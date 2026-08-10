@@ -424,7 +424,7 @@ export function RequestPage({
                 >
               </div>`
             : ''}
-          <div class="order-layout">
+          <div class="split-layout">
             <div>
               ${Form({
                 values: seeded,

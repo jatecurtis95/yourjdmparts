@@ -75,10 +75,10 @@ export function Logo({
       : html`<span class="logo logo--mark">${mark}</span>`;
   }
 
+  // The spans are flex items so --logo-word gap sets the spacing; they
+  // carry no classes of their own because none is needed.
   const wordmark = html`<span class="logo__word" aria-hidden="true"
-    ><span class="logo__word-your">Your</span
-    ><span class="logo__word-jdm">JDM</span
-    ><span class="logo__word-parts">Parts</span></span
+    ><span>Your</span><span>JDM</span><span>Parts</span></span
   >`;
 
   const taglineEl = tagline

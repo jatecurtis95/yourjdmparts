@@ -537,6 +537,9 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
 
 .logo--vertical { flex-direction: column; text-align: center; gap: var(--space-2); }
 
+/* Mark-only lockup: nothing sits beside it, so it needs no gap. */
+.logo--mark { gap: 0; }
+
 .logo__gate { fill: var(--bone); }
 .logo__sun { fill: var(--sunrise); }
 .logo--mono .logo__gate { fill: currentColor; }
@@ -1421,3 +1424,19 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
 .brand-chip:hover .brand-mark { background-color: var(--text-primary); }
 
 .brand-chip .brand-mark { height: 32px; }
+
+/* ── Split layout ───────────────────────────────────────────────
+   A wide working column with a narrower aside: the request form beside
+   "what happens next", the contact channels beside "where we are". */
+
+.split-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: var(--space-7);
+  align-items: start;
+  padding-block: var(--space-6) var(--space-9);
+}
+
+@media (max-width: 900px) {
+  .split-layout { grid-template-columns: minmax(0, 1fr); }
+}

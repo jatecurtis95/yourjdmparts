@@ -76,16 +76,15 @@ export function ContactPage() {
     </section>
 
     <div class="container section">
-      <div class="order-layout">
+      <div class="split-layout">
         <div>
           <h2 class="display-2" style="margin-bottom: var(--space-5)">How to reach us</h2>
           <div class="grid" style="gap: var(--space-4)">
             ${CHANNELS.map(
               (channel) => html`<a class="source-card" href="${channel.href}">
-                <p class="card-eyebrow">${channel.label}</p>
+                <p class="card-eyebrow">${Icon(channel.icon, { size: 16 })}${channel.label}</p>
                 <p class="source-card__name">${channel.value}</p>
                 <p class="muted">${channel.note}</p>
-                <span class="source-card__cta">${Icon('arrow-right', { size: 16 })}${channel.label}</span>
               </a>`,
             )}
           </div>

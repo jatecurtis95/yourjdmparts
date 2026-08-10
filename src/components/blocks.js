@@ -31,7 +31,7 @@ export function SpecTable({ rows, caption = null }) {
 
 /** @param {{id: string, tabs: Array<{id: string, label: string, panel: unknown}>}} props */
 export function Tabs({ id, tabs }) {
-  return html`<div class="tabs" data-tabs id="${id}">
+  return html`<div data-tabs id="${id}">
     <div class="tabs__list" role="tablist">
       ${tabs.map(
         (tab, i) =>
