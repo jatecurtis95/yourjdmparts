@@ -1,0 +1,134 @@
+/* ============================================================
+   Your JDM Parts — design tokens
+   THE single source of truth for colour, type, space, radius, motion.
+
+   Nothing outside this file may contain a hex value. There is a test
+   that enforces it (test/design-system.test.mjs).
+   ============================================================ */
+
+:root {
+  /* Native controls — date pickers, select popups, scrollbars — follow
+     this. Without it the month picker renders light-on-dark. */
+  color-scheme: dark;
+
+  /* ── The five colours. There is no sixth. ────────────────── */
+  --midnight: #0B1624; /* page ground                          */
+  --navy:     #16335E; /* card and panel surface               */
+  --bone:     #FBF3E7; /* type, and the logo                   */
+  --sunrise:  #F55A14; /* the sun disc, and the primary action */
+  --gold:     #C8A44D; /* hairlines, tagline, pattern          */
+
+  /* Channel triplets so alpha ramps stay inside the five above.
+     An alpha of an existing colour is not a new colour. */
+  --midnight-rgb: 11 22 36;
+  --navy-rgb:     22 51 94;
+  --bone-rgb:     251 243 231;
+  --sunrise-rgb:  245 90 20;
+  --gold-rgb:     200 164 77;
+
+  /* ── Alpha ramps ─────────────────────────────────────────── */
+  --bone-04: rgb(var(--bone-rgb) / 0.04);
+  --bone-08: rgb(var(--bone-rgb) / 0.08);
+  --bone-10: rgb(var(--bone-rgb) / 0.10); /* the card hairline */
+  --bone-16: rgb(var(--bone-rgb) / 0.16);
+  --bone-24: rgb(var(--bone-rgb) / 0.24);
+  --bone-62: rgb(var(--bone-rgb) / 0.62); /* muted type: 6.6:1 on midnight */
+
+  --gold-16: rgb(var(--gold-rgb) / 0.16);
+  --gold-32: rgb(var(--gold-rgb) / 0.32);
+  --gold-48: rgb(var(--gold-rgb) / 0.48);
+
+  --sunrise-12: rgb(var(--sunrise-rgb) / 0.12);
+  --sunrise-48: rgb(var(--sunrise-rgb) / 0.48);
+
+  --midnight-72: rgb(var(--midnight-rgb) / 0.72);
+  --midnight-86: rgb(var(--midnight-rgb) / 0.86); /* flat hero scrim, never a gradient */
+  --navy-64:     rgb(var(--navy-rgb) / 0.64);
+
+  /* ── Semantic roles ──────────────────────────────────────── */
+  --ground:          var(--midnight);
+  --surface:         var(--navy);
+  --surface-sunken:  rgb(var(--midnight-rgb) / 0.4);
+  --hairline:        var(--bone-10);
+  --hairline-strong: var(--bone-16);
+  --hairline-gold:   var(--gold-32);
+
+  --text-primary: var(--bone);
+  --text-muted:   var(--bone-62);
+  --text-accent:  var(--gold);
+
+  /* Type on a Sunrise fill is Midnight, never Bone.
+     Midnight on Sunrise = 5.57:1. Bone on Sunrise = 3.00:1, which fails. */
+  --text-on-sunrise: var(--midnight);
+  --text-on-bone:    var(--midnight);
+
+  --focus-ring: var(--gold);
+
+  /* ── Type ────────────────────────────────────────────────── */
+  --font-display:   'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-condensed: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --font-ui:        'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:      'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Mega condensed headline. The upper bound is set so the longest line of
+     the hero headline stays on one line in its column — the three-line
+     structure is the design, so it must not wrap. */
+  --size-mega:   clamp(2.5rem, 7vw, 5rem);
+  --size-d1:     clamp(2rem, 5.2vw, 3.25rem);
+  --size-d2:     clamp(1.5rem, 3.4vw, 2.125rem);
+  --size-d3:     1.375rem;
+  --size-body-l: 1.0625rem;
+  --size-body:   0.9375rem;
+  --size-small:  0.8125rem;
+  --size-micro:  0.6875rem;
+
+  --leading-mega:  0.88;
+  --leading-tight: 1.12;
+  --leading-snug:  1.35;
+  --leading-body:  1.6;
+
+  /* Uppercase is always tracked. Never set uppercase without one of these. */
+  --track-mega:  -0.015em;
+  --track-label: 0.14em;
+  --track-eyebrow: 0.2em;
+
+  /* ── Space — 4px base ────────────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --measure: 62ch;
+  --max-width: 1280px;
+
+  /* ── Radius — restrained, because the system is flat ─────── */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-pill: 999px;
+
+  /* ── Motion — colour and opacity only, 180ms ─────────────── */
+  --motion: 180ms;
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --transition: color var(--motion) var(--ease),
+                background-color var(--motion) var(--ease),
+                border-color var(--motion) var(--ease),
+                opacity var(--motion) var(--ease);
+
+  /* ── The one shadow in the system. Modal only. ───────────── */
+  --shadow-modal: 0 24px 64px rgb(var(--midnight-rgb) / 0.72);
+
+  /* ── Pattern ─────────────────────────────────────────────── */
+  --pattern-size: 350px;
+  --pattern-opacity: 0.06;
+
+  /* ── Hit targets ─────────────────────────────────────────── */
+  --hit: 44px;
+}

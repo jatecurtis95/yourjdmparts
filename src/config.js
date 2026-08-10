@@ -1,0 +1,61 @@
+/** Site-wide configuration. Anything a human might want to change lives here. */
+
+export const SITE = {
+  name: 'Your JDM Parts',
+  domain: 'yourjdmparts.com',
+  origin: 'https://yourjdmparts.com',
+  tagline: 'Genuine parts, inspected and landed',
+  description:
+    'We source genuine and aftermarket Japanese domestic market car parts to order — found in Japan, inspected, and quoted in landed Australian dollars with duty and GST included.',
+  email: 'parts@yourjdmparts.com',
+  phone: '',
+  abn: '',
+  sisterCompany: { name: 'JDM Connect', blurb: 'imports whole vehicles' },
+};
+
+/** Shown in the trade strip above the nav. */
+export const TRADE = {
+  dispatch: 'Sourced to order from Japan',
+  pricing: 'Quotes in A$ landed, duty and GST paid',
+  quoteDays: 4,
+};
+
+export const GST_RATE = 0.1;
+
+/**
+ * Hero media. Leave both null and the hero renders as the patterned
+ * Midnight ground the design system specifies. Set them and the hero
+ * becomes full-bleed behind a flat scrim, with the poster shown to anyone
+ * who prefers reduced motion.
+ *
+ *   heroVideo:  '/assets/img/hero.mp4'
+ *   heroPoster: '/assets/img/hero.jpg'
+ */
+export const HERO_MEDIA = {
+  video: null,
+  poster: null,
+  alt: '',
+};
+
+export const NAV = [
+  { href: '/what-we-source', label: 'What we source' },
+  { href: '/brands', label: 'Brands' },
+  { href: '/how-it-works', label: 'How it works' },
+  { href: '/request', label: 'Request a part' },
+];
+
+/** Chassis codes shown in the ticker. */
+export const TICKER_CODES = [
+  'JZA80',
+  'BNR34',
+  'FD3S',
+  'S15',
+  'EK9',
+  'CT9A',
+  'GDB',
+  'JZX100',
+  'AE86',
+  'BCNR33',
+  'DC2',
+  'BNR32',
+];

@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <title>Seigaiha</title>
+  <defs>
+    <mask id="seigaiha" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <circle cx="-50" cy="-25" r="25" fill="#000"/>
+      <path d="M-75 -25A25 25 0 0 1 -25 -25M-72 -25A22 22 0 0 1 -28 -25M-69 -25A19 19 0 0 1 -31 -25M-66 -25A16 16 0 0 1 -34 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-25" cy="-25" r="25" fill="#000"/>
+      <path d="M-50 -25A25 25 0 0 1 0 -25M-47 -25A22 22 0 0 1 -3 -25M-44 -25A19 19 0 0 1 -6 -25M-41 -25A16 16 0 0 1 -9 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="0" cy="-25" r="25" fill="#000"/>
+      <path d="M-25 -25A25 25 0 0 1 25 -25M-22 -25A22 22 0 0 1 22 -25M-19 -25A19 19 0 0 1 19 -25M-16 -25A16 16 0 0 1 16 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="25" cy="-25" r="25" fill="#000"/>
+      <path d="M0 -25A25 25 0 0 1 50 -25M3 -25A22 22 0 0 1 47 -25M6 -25A19 19 0 0 1 44 -25M9 -25A16 16 0 0 1 41 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="50" cy="-25" r="25" fill="#000"/>
+      <path d="M25 -25A25 25 0 0 1 75 -25M28 -25A22 22 0 0 1 72 -25M31 -25A19 19 0 0 1 69 -25M34 -25A16 16 0 0 1 66 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="75" cy="-25" r="25" fill="#000"/>
+      <path d="M50 -25A25 25 0 0 1 100 -25M53 -25A22 22 0 0 1 97 -25M56 -25A19 19 0 0 1 94 -25M59 -25A16 16 0 0 1 91 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="100" cy="-25" r="25" fill="#000"/>
+      <path d="M75 -25A25 25 0 0 1 125 -25M78 -25A22 22 0 0 1 122 -25M81 -25A19 19 0 0 1 119 -25M84 -25A16 16 0 0 1 116 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="125" cy="-25" r="25" fill="#000"/>
+      <path d="M100 -25A25 25 0 0 1 150 -25M103 -25A22 22 0 0 1 147 -25M106 -25A19 19 0 0 1 144 -25M109 -25A16 16 0 0 1 141 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="150" cy="-25" r="25" fill="#000"/>
+      <path d="M125 -25A25 25 0 0 1 175 -25M128 -25A22 22 0 0 1 172 -25M131 -25A19 19 0 0 1 169 -25M134 -25A16 16 0 0 1 166 -25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-37.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M-62.5 -12.5A25 25 0 0 1 -12.5 -12.5M-59.5 -12.5A22 22 0 0 1 -15.5 -12.5M-56.5 -12.5A19 19 0 0 1 -18.5 -12.5M-53.5 -12.5A16 16 0 0 1 -21.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-12.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M-37.5 -12.5A25 25 0 0 1 12.5 -12.5M-34.5 -12.5A22 22 0 0 1 9.5 -12.5M-31.5 -12.5A19 19 0 0 1 6.5 -12.5M-28.5 -12.5A16 16 0 0 1 3.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="12.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M-12.5 -12.5A25 25 0 0 1 37.5 -12.5M-9.5 -12.5A22 22 0 0 1 34.5 -12.5M-6.5 -12.5A19 19 0 0 1 31.5 -12.5M-3.5 -12.5A16 16 0 0 1 28.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="37.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M12.5 -12.5A25 25 0 0 1 62.5 -12.5M15.5 -12.5A22 22 0 0 1 59.5 -12.5M18.5 -12.5A19 19 0 0 1 56.5 -12.5M21.5 -12.5A16 16 0 0 1 53.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="62.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M37.5 -12.5A25 25 0 0 1 87.5 -12.5M40.5 -12.5A22 22 0 0 1 84.5 -12.5M43.5 -12.5A19 19 0 0 1 81.5 -12.5M46.5 -12.5A16 16 0 0 1 78.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="87.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M62.5 -12.5A25 25 0 0 1 112.5 -12.5M65.5 -12.5A22 22 0 0 1 109.5 -12.5M68.5 -12.5A19 19 0 0 1 106.5 -12.5M71.5 -12.5A16 16 0 0 1 103.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="112.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M87.5 -12.5A25 25 0 0 1 137.5 -12.5M90.5 -12.5A22 22 0 0 1 134.5 -12.5M93.5 -12.5A19 19 0 0 1 131.5 -12.5M96.5 -12.5A16 16 0 0 1 128.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="137.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M112.5 -12.5A25 25 0 0 1 162.5 -12.5M115.5 -12.5A22 22 0 0 1 159.5 -12.5M118.5 -12.5A19 19 0 0 1 156.5 -12.5M121.5 -12.5A16 16 0 0 1 153.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="162.5" cy="-12.5" r="25" fill="#000"/>
+      <path d="M137.5 -12.5A25 25 0 0 1 187.5 -12.5M140.5 -12.5A22 22 0 0 1 184.5 -12.5M143.5 -12.5A19 19 0 0 1 181.5 -12.5M146.5 -12.5A16 16 0 0 1 178.5 -12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-50" cy="0" r="25" fill="#000"/>
+      <path d="M-75 0A25 25 0 0 1 -25 0M-72 0A22 22 0 0 1 -28 0M-69 0A19 19 0 0 1 -31 0M-66 0A16 16 0 0 1 -34 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-25" cy="0" r="25" fill="#000"/>
+      <path d="M-50 0A25 25 0 0 1 0 0M-47 0A22 22 0 0 1 -3 0M-44 0A19 19 0 0 1 -6 0M-41 0A16 16 0 0 1 -9 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="0" cy="0" r="25" fill="#000"/>
+      <path d="M-25 0A25 25 0 0 1 25 0M-22 0A22 22 0 0 1 22 0M-19 0A19 19 0 0 1 19 0M-16 0A16 16 0 0 1 16 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="25" cy="0" r="25" fill="#000"/>
+      <path d="M0 0A25 25 0 0 1 50 0M3 0A22 22 0 0 1 47 0M6 0A19 19 0 0 1 44 0M9 0A16 16 0 0 1 41 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="50" cy="0" r="25" fill="#000"/>
+      <path d="M25 0A25 25 0 0 1 75 0M28 0A22 22 0 0 1 72 0M31 0A19 19 0 0 1 69 0M34 0A16 16 0 0 1 66 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="75" cy="0" r="25" fill="#000"/>
+      <path d="M50 0A25 25 0 0 1 100 0M53 0A22 22 0 0 1 97 0M56 0A19 19 0 0 1 94 0M59 0A16 16 0 0 1 91 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="100" cy="0" r="25" fill="#000"/>
+      <path d="M75 0A25 25 0 0 1 125 0M78 0A22 22 0 0 1 122 0M81 0A19 19 0 0 1 119 0M84 0A16 16 0 0 1 116 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="125" cy="0" r="25" fill="#000"/>
+      <path d="M100 0A25 25 0 0 1 150 0M103 0A22 22 0 0 1 147 0M106 0A19 19 0 0 1 144 0M109 0A16 16 0 0 1 141 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="150" cy="0" r="25" fill="#000"/>
+      <path d="M125 0A25 25 0 0 1 175 0M128 0A22 22 0 0 1 172 0M131 0A19 19 0 0 1 169 0M134 0A16 16 0 0 1 166 0" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-37.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M-62.5 12.5A25 25 0 0 1 -12.5 12.5M-59.5 12.5A22 22 0 0 1 -15.5 12.5M-56.5 12.5A19 19 0 0 1 -18.5 12.5M-53.5 12.5A16 16 0 0 1 -21.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-12.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M-37.5 12.5A25 25 0 0 1 12.5 12.5M-34.5 12.5A22 22 0 0 1 9.5 12.5M-31.5 12.5A19 19 0 0 1 6.5 12.5M-28.5 12.5A16 16 0 0 1 3.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="12.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M-12.5 12.5A25 25 0 0 1 37.5 12.5M-9.5 12.5A22 22 0 0 1 34.5 12.5M-6.5 12.5A19 19 0 0 1 31.5 12.5M-3.5 12.5A16 16 0 0 1 28.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="37.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M12.5 12.5A25 25 0 0 1 62.5 12.5M15.5 12.5A22 22 0 0 1 59.5 12.5M18.5 12.5A19 19 0 0 1 56.5 12.5M21.5 12.5A16 16 0 0 1 53.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="62.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M37.5 12.5A25 25 0 0 1 87.5 12.5M40.5 12.5A22 22 0 0 1 84.5 12.5M43.5 12.5A19 19 0 0 1 81.5 12.5M46.5 12.5A16 16 0 0 1 78.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="87.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M62.5 12.5A25 25 0 0 1 112.5 12.5M65.5 12.5A22 22 0 0 1 109.5 12.5M68.5 12.5A19 19 0 0 1 106.5 12.5M71.5 12.5A16 16 0 0 1 103.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="112.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M87.5 12.5A25 25 0 0 1 137.5 12.5M90.5 12.5A22 22 0 0 1 134.5 12.5M93.5 12.5A19 19 0 0 1 131.5 12.5M96.5 12.5A16 16 0 0 1 128.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="137.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M112.5 12.5A25 25 0 0 1 162.5 12.5M115.5 12.5A22 22 0 0 1 159.5 12.5M118.5 12.5A19 19 0 0 1 156.5 12.5M121.5 12.5A16 16 0 0 1 153.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="162.5" cy="12.5" r="25" fill="#000"/>
+      <path d="M137.5 12.5A25 25 0 0 1 187.5 12.5M140.5 12.5A22 22 0 0 1 184.5 12.5M143.5 12.5A19 19 0 0 1 181.5 12.5M146.5 12.5A16 16 0 0 1 178.5 12.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-50" cy="25" r="25" fill="#000"/>
+      <path d="M-75 25A25 25 0 0 1 -25 25M-72 25A22 22 0 0 1 -28 25M-69 25A19 19 0 0 1 -31 25M-66 25A16 16 0 0 1 -34 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-25" cy="25" r="25" fill="#000"/>
+      <path d="M-50 25A25 25 0 0 1 0 25M-47 25A22 22 0 0 1 -3 25M-44 25A19 19 0 0 1 -6 25M-41 25A16 16 0 0 1 -9 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="0" cy="25" r="25" fill="#000"/>
+      <path d="M-25 25A25 25 0 0 1 25 25M-22 25A22 22 0 0 1 22 25M-19 25A19 19 0 0 1 19 25M-16 25A16 16 0 0 1 16 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="25" cy="25" r="25" fill="#000"/>
+      <path d="M0 25A25 25 0 0 1 50 25M3 25A22 22 0 0 1 47 25M6 25A19 19 0 0 1 44 25M9 25A16 16 0 0 1 41 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="50" cy="25" r="25" fill="#000"/>
+      <path d="M25 25A25 25 0 0 1 75 25M28 25A22 22 0 0 1 72 25M31 25A19 19 0 0 1 69 25M34 25A16 16 0 0 1 66 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="75" cy="25" r="25" fill="#000"/>
+      <path d="M50 25A25 25 0 0 1 100 25M53 25A22 22 0 0 1 97 25M56 25A19 19 0 0 1 94 25M59 25A16 16 0 0 1 91 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="100" cy="25" r="25" fill="#000"/>
+      <path d="M75 25A25 25 0 0 1 125 25M78 25A22 22 0 0 1 122 25M81 25A19 19 0 0 1 119 25M84 25A16 16 0 0 1 116 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="125" cy="25" r="25" fill="#000"/>
+      <path d="M100 25A25 25 0 0 1 150 25M103 25A22 22 0 0 1 147 25M106 25A19 19 0 0 1 144 25M109 25A16 16 0 0 1 141 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="150" cy="25" r="25" fill="#000"/>
+      <path d="M125 25A25 25 0 0 1 175 25M128 25A22 22 0 0 1 172 25M131 25A19 19 0 0 1 169 25M134 25A16 16 0 0 1 166 25" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-37.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M-62.5 37.5A25 25 0 0 1 -12.5 37.5M-59.5 37.5A22 22 0 0 1 -15.5 37.5M-56.5 37.5A19 19 0 0 1 -18.5 37.5M-53.5 37.5A16 16 0 0 1 -21.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-12.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M-37.5 37.5A25 25 0 0 1 12.5 37.5M-34.5 37.5A22 22 0 0 1 9.5 37.5M-31.5 37.5A19 19 0 0 1 6.5 37.5M-28.5 37.5A16 16 0 0 1 3.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="12.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M-12.5 37.5A25 25 0 0 1 37.5 37.5M-9.5 37.5A22 22 0 0 1 34.5 37.5M-6.5 37.5A19 19 0 0 1 31.5 37.5M-3.5 37.5A16 16 0 0 1 28.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="37.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M12.5 37.5A25 25 0 0 1 62.5 37.5M15.5 37.5A22 22 0 0 1 59.5 37.5M18.5 37.5A19 19 0 0 1 56.5 37.5M21.5 37.5A16 16 0 0 1 53.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="62.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M37.5 37.5A25 25 0 0 1 87.5 37.5M40.5 37.5A22 22 0 0 1 84.5 37.5M43.5 37.5A19 19 0 0 1 81.5 37.5M46.5 37.5A16 16 0 0 1 78.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="87.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M62.5 37.5A25 25 0 0 1 112.5 37.5M65.5 37.5A22 22 0 0 1 109.5 37.5M68.5 37.5A19 19 0 0 1 106.5 37.5M71.5 37.5A16 16 0 0 1 103.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="112.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M87.5 37.5A25 25 0 0 1 137.5 37.5M90.5 37.5A22 22 0 0 1 134.5 37.5M93.5 37.5A19 19 0 0 1 131.5 37.5M96.5 37.5A16 16 0 0 1 128.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="137.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M112.5 37.5A25 25 0 0 1 162.5 37.5M115.5 37.5A22 22 0 0 1 159.5 37.5M118.5 37.5A19 19 0 0 1 156.5 37.5M121.5 37.5A16 16 0 0 1 153.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="162.5" cy="37.5" r="25" fill="#000"/>
+      <path d="M137.5 37.5A25 25 0 0 1 187.5 37.5M140.5 37.5A22 22 0 0 1 184.5 37.5M143.5 37.5A19 19 0 0 1 181.5 37.5M146.5 37.5A16 16 0 0 1 178.5 37.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-50" cy="50" r="25" fill="#000"/>
+      <path d="M-75 50A25 25 0 0 1 -25 50M-72 50A22 22 0 0 1 -28 50M-69 50A19 19 0 0 1 -31 50M-66 50A16 16 0 0 1 -34 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-25" cy="50" r="25" fill="#000"/>
+      <path d="M-50 50A25 25 0 0 1 0 50M-47 50A22 22 0 0 1 -3 50M-44 50A19 19 0 0 1 -6 50M-41 50A16 16 0 0 1 -9 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="0" cy="50" r="25" fill="#000"/>
+      <path d="M-25 50A25 25 0 0 1 25 50M-22 50A22 22 0 0 1 22 50M-19 50A19 19 0 0 1 19 50M-16 50A16 16 0 0 1 16 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="25" cy="50" r="25" fill="#000"/>
+      <path d="M0 50A25 25 0 0 1 50 50M3 50A22 22 0 0 1 47 50M6 50A19 19 0 0 1 44 50M9 50A16 16 0 0 1 41 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="50" cy="50" r="25" fill="#000"/>
+      <path d="M25 50A25 25 0 0 1 75 50M28 50A22 22 0 0 1 72 50M31 50A19 19 0 0 1 69 50M34 50A16 16 0 0 1 66 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="75" cy="50" r="25" fill="#000"/>
+      <path d="M50 50A25 25 0 0 1 100 50M53 50A22 22 0 0 1 97 50M56 50A19 19 0 0 1 94 50M59 50A16 16 0 0 1 91 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="100" cy="50" r="25" fill="#000"/>
+      <path d="M75 50A25 25 0 0 1 125 50M78 50A22 22 0 0 1 122 50M81 50A19 19 0 0 1 119 50M84 50A16 16 0 0 1 116 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="125" cy="50" r="25" fill="#000"/>
+      <path d="M100 50A25 25 0 0 1 150 50M103 50A22 22 0 0 1 147 50M106 50A19 19 0 0 1 144 50M109 50A16 16 0 0 1 141 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="150" cy="50" r="25" fill="#000"/>
+      <path d="M125 50A25 25 0 0 1 175 50M128 50A22 22 0 0 1 172 50M131 50A19 19 0 0 1 169 50M134 50A16 16 0 0 1 166 50" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-37.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M-62.5 62.5A25 25 0 0 1 -12.5 62.5M-59.5 62.5A22 22 0 0 1 -15.5 62.5M-56.5 62.5A19 19 0 0 1 -18.5 62.5M-53.5 62.5A16 16 0 0 1 -21.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-12.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M-37.5 62.5A25 25 0 0 1 12.5 62.5M-34.5 62.5A22 22 0 0 1 9.5 62.5M-31.5 62.5A19 19 0 0 1 6.5 62.5M-28.5 62.5A16 16 0 0 1 3.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="12.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M-12.5 62.5A25 25 0 0 1 37.5 62.5M-9.5 62.5A22 22 0 0 1 34.5 62.5M-6.5 62.5A19 19 0 0 1 31.5 62.5M-3.5 62.5A16 16 0 0 1 28.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="37.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M12.5 62.5A25 25 0 0 1 62.5 62.5M15.5 62.5A22 22 0 0 1 59.5 62.5M18.5 62.5A19 19 0 0 1 56.5 62.5M21.5 62.5A16 16 0 0 1 53.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="62.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M37.5 62.5A25 25 0 0 1 87.5 62.5M40.5 62.5A22 22 0 0 1 84.5 62.5M43.5 62.5A19 19 0 0 1 81.5 62.5M46.5 62.5A16 16 0 0 1 78.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="87.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M62.5 62.5A25 25 0 0 1 112.5 62.5M65.5 62.5A22 22 0 0 1 109.5 62.5M68.5 62.5A19 19 0 0 1 106.5 62.5M71.5 62.5A16 16 0 0 1 103.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="112.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M87.5 62.5A25 25 0 0 1 137.5 62.5M90.5 62.5A22 22 0 0 1 134.5 62.5M93.5 62.5A19 19 0 0 1 131.5 62.5M96.5 62.5A16 16 0 0 1 128.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="137.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M112.5 62.5A25 25 0 0 1 162.5 62.5M115.5 62.5A22 22 0 0 1 159.5 62.5M118.5 62.5A19 19 0 0 1 156.5 62.5M121.5 62.5A16 16 0 0 1 153.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="162.5" cy="62.5" r="25" fill="#000"/>
+      <path d="M137.5 62.5A25 25 0 0 1 187.5 62.5M140.5 62.5A22 22 0 0 1 184.5 62.5M143.5 62.5A19 19 0 0 1 181.5 62.5M146.5 62.5A16 16 0 0 1 178.5 62.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-50" cy="75" r="25" fill="#000"/>
+      <path d="M-75 75A25 25 0 0 1 -25 75M-72 75A22 22 0 0 1 -28 75M-69 75A19 19 0 0 1 -31 75M-66 75A16 16 0 0 1 -34 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-25" cy="75" r="25" fill="#000"/>
+      <path d="M-50 75A25 25 0 0 1 0 75M-47 75A22 22 0 0 1 -3 75M-44 75A19 19 0 0 1 -6 75M-41 75A16 16 0 0 1 -9 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="0" cy="75" r="25" fill="#000"/>
+      <path d="M-25 75A25 25 0 0 1 25 75M-22 75A22 22 0 0 1 22 75M-19 75A19 19 0 0 1 19 75M-16 75A16 16 0 0 1 16 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="25" cy="75" r="25" fill="#000"/>
+      <path d="M0 75A25 25 0 0 1 50 75M3 75A22 22 0 0 1 47 75M6 75A19 19 0 0 1 44 75M9 75A16 16 0 0 1 41 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="50" cy="75" r="25" fill="#000"/>
+      <path d="M25 75A25 25 0 0 1 75 75M28 75A22 22 0 0 1 72 75M31 75A19 19 0 0 1 69 75M34 75A16 16 0 0 1 66 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="75" cy="75" r="25" fill="#000"/>
+      <path d="M50 75A25 25 0 0 1 100 75M53 75A22 22 0 0 1 97 75M56 75A19 19 0 0 1 94 75M59 75A16 16 0 0 1 91 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="100" cy="75" r="25" fill="#000"/>
+      <path d="M75 75A25 25 0 0 1 125 75M78 75A22 22 0 0 1 122 75M81 75A19 19 0 0 1 119 75M84 75A16 16 0 0 1 116 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="125" cy="75" r="25" fill="#000"/>
+      <path d="M100 75A25 25 0 0 1 150 75M103 75A22 22 0 0 1 147 75M106 75A19 19 0 0 1 144 75M109 75A16 16 0 0 1 141 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="150" cy="75" r="25" fill="#000"/>
+      <path d="M125 75A25 25 0 0 1 175 75M128 75A22 22 0 0 1 172 75M131 75A19 19 0 0 1 169 75M134 75A16 16 0 0 1 166 75" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-37.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M-62.5 87.5A25 25 0 0 1 -12.5 87.5M-59.5 87.5A22 22 0 0 1 -15.5 87.5M-56.5 87.5A19 19 0 0 1 -18.5 87.5M-53.5 87.5A16 16 0 0 1 -21.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-12.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M-37.5 87.5A25 25 0 0 1 12.5 87.5M-34.5 87.5A22 22 0 0 1 9.5 87.5M-31.5 87.5A19 19 0 0 1 6.5 87.5M-28.5 87.5A16 16 0 0 1 3.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="12.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M-12.5 87.5A25 25 0 0 1 37.5 87.5M-9.5 87.5A22 22 0 0 1 34.5 87.5M-6.5 87.5A19 19 0 0 1 31.5 87.5M-3.5 87.5A16 16 0 0 1 28.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="37.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M12.5 87.5A25 25 0 0 1 62.5 87.5M15.5 87.5A22 22 0 0 1 59.5 87.5M18.5 87.5A19 19 0 0 1 56.5 87.5M21.5 87.5A16 16 0 0 1 53.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="62.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M37.5 87.5A25 25 0 0 1 87.5 87.5M40.5 87.5A22 22 0 0 1 84.5 87.5M43.5 87.5A19 19 0 0 1 81.5 87.5M46.5 87.5A16 16 0 0 1 78.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="87.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M62.5 87.5A25 25 0 0 1 112.5 87.5M65.5 87.5A22 22 0 0 1 109.5 87.5M68.5 87.5A19 19 0 0 1 106.5 87.5M71.5 87.5A16 16 0 0 1 103.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="112.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M87.5 87.5A25 25 0 0 1 137.5 87.5M90.5 87.5A22 22 0 0 1 134.5 87.5M93.5 87.5A19 19 0 0 1 131.5 87.5M96.5 87.5A16 16 0 0 1 128.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="137.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M112.5 87.5A25 25 0 0 1 162.5 87.5M115.5 87.5A22 22 0 0 1 159.5 87.5M118.5 87.5A19 19 0 0 1 156.5 87.5M121.5 87.5A16 16 0 0 1 153.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="162.5" cy="87.5" r="25" fill="#000"/>
+      <path d="M137.5 87.5A25 25 0 0 1 187.5 87.5M140.5 87.5A22 22 0 0 1 184.5 87.5M143.5 87.5A19 19 0 0 1 181.5 87.5M146.5 87.5A16 16 0 0 1 178.5 87.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-50" cy="100" r="25" fill="#000"/>
+      <path d="M-75 100A25 25 0 0 1 -25 100M-72 100A22 22 0 0 1 -28 100M-69 100A19 19 0 0 1 -31 100M-66 100A16 16 0 0 1 -34 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-25" cy="100" r="25" fill="#000"/>
+      <path d="M-50 100A25 25 0 0 1 0 100M-47 100A22 22 0 0 1 -3 100M-44 100A19 19 0 0 1 -6 100M-41 100A16 16 0 0 1 -9 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="0" cy="100" r="25" fill="#000"/>
+      <path d="M-25 100A25 25 0 0 1 25 100M-22 100A22 22 0 0 1 22 100M-19 100A19 19 0 0 1 19 100M-16 100A16 16 0 0 1 16 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="25" cy="100" r="25" fill="#000"/>
+      <path d="M0 100A25 25 0 0 1 50 100M3 100A22 22 0 0 1 47 100M6 100A19 19 0 0 1 44 100M9 100A16 16 0 0 1 41 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="50" cy="100" r="25" fill="#000"/>
+      <path d="M25 100A25 25 0 0 1 75 100M28 100A22 22 0 0 1 72 100M31 100A19 19 0 0 1 69 100M34 100A16 16 0 0 1 66 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="75" cy="100" r="25" fill="#000"/>
+      <path d="M50 100A25 25 0 0 1 100 100M53 100A22 22 0 0 1 97 100M56 100A19 19 0 0 1 94 100M59 100A16 16 0 0 1 91 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="100" cy="100" r="25" fill="#000"/>
+      <path d="M75 100A25 25 0 0 1 125 100M78 100A22 22 0 0 1 122 100M81 100A19 19 0 0 1 119 100M84 100A16 16 0 0 1 116 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="125" cy="100" r="25" fill="#000"/>
+      <path d="M100 100A25 25 0 0 1 150 100M103 100A22 22 0 0 1 147 100M106 100A19 19 0 0 1 144 100M109 100A16 16 0 0 1 141 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="150" cy="100" r="25" fill="#000"/>
+      <path d="M125 100A25 25 0 0 1 175 100M128 100A22 22 0 0 1 172 100M131 100A19 19 0 0 1 169 100M134 100A16 16 0 0 1 166 100" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-37.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M-62.5 112.5A25 25 0 0 1 -12.5 112.5M-59.5 112.5A22 22 0 0 1 -15.5 112.5M-56.5 112.5A19 19 0 0 1 -18.5 112.5M-53.5 112.5A16 16 0 0 1 -21.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-12.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M-37.5 112.5A25 25 0 0 1 12.5 112.5M-34.5 112.5A22 22 0 0 1 9.5 112.5M-31.5 112.5A19 19 0 0 1 6.5 112.5M-28.5 112.5A16 16 0 0 1 3.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="12.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M-12.5 112.5A25 25 0 0 1 37.5 112.5M-9.5 112.5A22 22 0 0 1 34.5 112.5M-6.5 112.5A19 19 0 0 1 31.5 112.5M-3.5 112.5A16 16 0 0 1 28.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="37.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M12.5 112.5A25 25 0 0 1 62.5 112.5M15.5 112.5A22 22 0 0 1 59.5 112.5M18.5 112.5A19 19 0 0 1 56.5 112.5M21.5 112.5A16 16 0 0 1 53.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="62.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M37.5 112.5A25 25 0 0 1 87.5 112.5M40.5 112.5A22 22 0 0 1 84.5 112.5M43.5 112.5A19 19 0 0 1 81.5 112.5M46.5 112.5A16 16 0 0 1 78.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="87.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M62.5 112.5A25 25 0 0 1 112.5 112.5M65.5 112.5A22 22 0 0 1 109.5 112.5M68.5 112.5A19 19 0 0 1 106.5 112.5M71.5 112.5A16 16 0 0 1 103.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="112.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M87.5 112.5A25 25 0 0 1 137.5 112.5M90.5 112.5A22 22 0 0 1 134.5 112.5M93.5 112.5A19 19 0 0 1 131.5 112.5M96.5 112.5A16 16 0 0 1 128.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="137.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M112.5 112.5A25 25 0 0 1 162.5 112.5M115.5 112.5A22 22 0 0 1 159.5 112.5M118.5 112.5A19 19 0 0 1 156.5 112.5M121.5 112.5A16 16 0 0 1 153.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="162.5" cy="112.5" r="25" fill="#000"/>
+      <path d="M137.5 112.5A25 25 0 0 1 187.5 112.5M140.5 112.5A22 22 0 0 1 184.5 112.5M143.5 112.5A19 19 0 0 1 181.5 112.5M146.5 112.5A16 16 0 0 1 178.5 112.5" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-50" cy="125" r="25" fill="#000"/>
+      <path d="M-75 125A25 25 0 0 1 -25 125M-72 125A22 22 0 0 1 -28 125M-69 125A19 19 0 0 1 -31 125M-66 125A16 16 0 0 1 -34 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="-25" cy="125" r="25" fill="#000"/>
+      <path d="M-50 125A25 25 0 0 1 0 125M-47 125A22 22 0 0 1 -3 125M-44 125A19 19 0 0 1 -6 125M-41 125A16 16 0 0 1 -9 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="0" cy="125" r="25" fill="#000"/>
+      <path d="M-25 125A25 25 0 0 1 25 125M-22 125A22 22 0 0 1 22 125M-19 125A19 19 0 0 1 19 125M-16 125A16 16 0 0 1 16 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="25" cy="125" r="25" fill="#000"/>
+      <path d="M0 125A25 25 0 0 1 50 125M3 125A22 22 0 0 1 47 125M6 125A19 19 0 0 1 44 125M9 125A16 16 0 0 1 41 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="50" cy="125" r="25" fill="#000"/>
+      <path d="M25 125A25 25 0 0 1 75 125M28 125A22 22 0 0 1 72 125M31 125A19 19 0 0 1 69 125M34 125A16 16 0 0 1 66 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="75" cy="125" r="25" fill="#000"/>
+      <path d="M50 125A25 25 0 0 1 100 125M53 125A22 22 0 0 1 97 125M56 125A19 19 0 0 1 94 125M59 125A16 16 0 0 1 91 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="100" cy="125" r="25" fill="#000"/>
+      <path d="M75 125A25 25 0 0 1 125 125M78 125A22 22 0 0 1 122 125M81 125A19 19 0 0 1 119 125M84 125A16 16 0 0 1 116 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="125" cy="125" r="25" fill="#000"/>
+      <path d="M100 125A25 25 0 0 1 150 125M103 125A22 22 0 0 1 147 125M106 125A19 19 0 0 1 144 125M109 125A16 16 0 0 1 141 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+      <circle cx="150" cy="125" r="25" fill="#000"/>
+      <path d="M125 125A25 25 0 0 1 175 125M128 125A22 22 0 0 1 172 125M131 125A19 19 0 0 1 169 125M134 125A16 16 0 0 1 166 125" fill="none" stroke="#fff" stroke-width="0.45"/>
+    </mask>
+  </defs>
+  <rect width="100" height="100" fill="#C8A44D" mask="url(#seigaiha)"/>
+</svg>

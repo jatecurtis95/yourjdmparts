@@ -1,0 +1,15 @@
+name = "yourjdmparts"
+main = "src/worker.js"
+compatibility_date = "2026-08-01"
+
+# Static assets (stylesheets, fonts, the pattern, the logo) are served
+# straight from ./public. The Worker runs first and hands /assets/* over.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[observability]
+enabled = true
+
+# Secrets are set in the Cloudflare dashboard, never here:
+#   REQUEST_WEBHOOK  where part requests are delivered
