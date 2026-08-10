@@ -201,6 +201,7 @@ i, em, cite, address, dfn, var { font-style: normal; }
 .prose strong { color: var(--text-primary); font-weight: 600; }
 
 .mono {
+  overflow-wrap: anywhere;
   font-family: var(--font-mono);
   font-size: 0.9em;
   letter-spacing: 0.01em;
@@ -1197,6 +1198,9 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
   font-size: var(--size-d3);
   font-weight: 600;
   line-height: var(--leading-snug);
+  /* Email addresses and part numbers are unbreakable tokens. Let them
+     wrap rather than push a narrow layout sideways. */
+  overflow-wrap: anywhere;
 }
 
 .source-card__name a::after { content: ''; position: absolute; inset: 0; }
