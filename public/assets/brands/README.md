@@ -12,6 +12,24 @@ face instead.** That is deliberate. An approximated or redrawn logo would
 misrepresent someone else's trademark, so the fallback is honest type
 rather than a guess at their mark.
 
+## What is here already
+
+Seven marks recovered from the previous site: bride, hks, momo, mugen,
+rays, spoon-sports, tein. The other 23 brands still fall back to type.
+
+These arrive as black-on-transparent artwork drawn for a light background,
+and `rays.svg` carries its own brand colour. They are painted through a CSS
+`mask-image` rather than shown as an `<img>`, so the shape stays exact
+while the colour comes from a token — that is what makes them legible on
+the navy panel without introducing a sixth colour into the palette.
+
+A consequence worth knowing: **multi-colour logos render as one colour.**
+That is deliberate, not a bug. The palette rule allows no sixth colour.
+
+Marks that are roughly square (MOMO is 0.97:1 where the others are 1.7–6.3)
+read as smaller beside wide wordmarks, because `mask-size: contain` fits
+them by height. MOMO is therefore listed but kept out of the home strip.
+
 ## What to supply
 
 - **SVG preferred**, PNG at 2× otherwise.

@@ -1390,3 +1390,30 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
 .nav-cta { padding-inline: var(--space-4); }
 
 @media (max-width: 560px) { .nav-cta { display: none; } }
+
+/* ── Supplier logos ─────────────────────────────────────────────
+   Artwork arrives black-on-transparent, drawn for a light ground, and
+   some carries its own brand colour. Painting it through a mask keeps
+   the shape exact while the colour stays a token — so it reads on the
+   navy panel without introducing a sixth colour. */
+
+.brand-mark {
+  display: block;
+  width: 100%;
+  height: 44px;
+  background-color: var(--text-muted);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  transition: background-color var(--motion) var(--ease);
+}
+
+.brand-mark--lg { height: 72px; }
+
+.brand-card:hover .brand-mark,
+.brand-chip:hover .brand-mark { background-color: var(--text-primary); }
+
+.brand-chip .brand-mark { height: 32px; }

@@ -141,7 +141,12 @@ export function BrandPage({ brand }) {
         <div class="brand-head">
           <div class="brand-head__mark">
             ${brand.logo
-              ? html`<img src="${brand.logo}" alt="${brand.name}" width="320" height="160" />`
+              ? html`<span
+                  class="brand-mark brand-mark--lg"
+                  style="mask-image:url('${brand.logo}');-webkit-mask-image:url('${brand.logo}')"
+                  role="img"
+                  aria-label="${brand.name}"
+                ></span>`
               : html`<span class="brand-card__wordmark" aria-hidden="true">${brand.name}</span>`}
           </div>
           <div>

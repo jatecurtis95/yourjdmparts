@@ -77,8 +77,8 @@ const STEPS = [
   },
   {
     n: '02',
-    title: 'We go looking',
-    body: 'Auction houses, dismantlers and the retailers we buy from in Japan. We check the part against your build month rather than the model year.',
+    title: 'We go looking, in Japanese',
+    body: 'Auction houses, dismantlers and the retailers we buy from — searched in Japanese, across the whole country, including the places export sites never reach. We check the part against your build month rather than the model year.',
   },
   {
     n: '03',

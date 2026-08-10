@@ -86,7 +86,7 @@ function Footer() {
         </div>
       </div>
       <div class="site-footer__base">
-        <span>© ${year} ${SITE.name}</span>
+        <span>© ${year} ${SITE.name} · ${SITE.city}, ${SITE.state}</span>
         <span>Sister company to ${SITE.sisterCompany.name}, which ${SITE.sisterCompany.blurb}.</span>
       </div>
     </div>

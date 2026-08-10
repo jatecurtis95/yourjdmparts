@@ -19,6 +19,7 @@ const PANELS = [
     title: 'Sourcing',
     body: [
       'We hold no stock, which is the point. Rather than buying whatever is cheap and hoping someone wants it, we go looking for the specific part your car needs — at auction, through the dismantlers we deal with, and from Japanese retailers when new is the better answer.',
+      'The searching is done in Japanese, which is most of the advantage. Dealer counters, auction listings, second-hand chains and small specialist shops are where the discontinued parts are, and almost none of it surfaces on an English-language export site.',
       'That takes longer than pulling something off a shelf. It also means we are not trying to talk you into the part we happen to have.',
     ],
   },

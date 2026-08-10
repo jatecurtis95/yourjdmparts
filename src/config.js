@@ -10,6 +10,10 @@ export const SITE = {
   email: 'parts@yourjdmparts.com',
   phone: '',
   abn: '',
+  city: 'Perth',
+  state: 'Western Australia',
+  // Sea freight route, taken from the existing site.
+  route: { from: 'Yokohama', to: 'Fremantle' },
   sisterCompany: { name: 'JDM Connect', blurb: 'imports whole vehicles' },
 };
 

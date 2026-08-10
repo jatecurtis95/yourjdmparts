@@ -30,7 +30,7 @@ export const BRANDS = [
     slug: 'tein',
     name: 'Tein',
     category: 'suspension',
-    logo: null,
+    logo: '/assets/brands/tein.svg',
     blurb:
       'Coilovers and dampers, from the street Street Advance range through to Mono Sport. Tein part numbers are chassis-specific, so we match them against your build month rather than the model year.',
   },
@@ -46,7 +46,7 @@ export const BRANDS = [
     slug: 'hks',
     name: 'HKS',
     category: 'engine',
-    logo: null,
+    logo: '/assets/brands/hks.svg',
     blurb:
       'Turbochargers, cams, intercoolers, exhausts and the Hipermax suspension line. One of the few tuners still producing for cars this old, though many parts are now discontinued and only available used.',
   },
@@ -94,7 +94,7 @@ export const BRANDS = [
     slug: 'spoon-sports',
     name: 'Spoon Sports',
     category: 'engine',
-    logo: null,
+    logo: '/assets/brands/spoon-sports.svg',
     blurb:
       'Honda specialists — engine work, brakes, rigid collars and body reinforcement, mostly for B-series and K-series cars.',
   },
@@ -126,7 +126,7 @@ export const BRANDS = [
     slug: 'mugen',
     name: 'Mugen',
     category: 'factory',
-    logo: null,
+    logo: '/assets/brands/mugen.svg',
     blurb:
       'Honda-adjacent, though independently owned. Wheels, aero, exhausts and engine parts. Genuine Mugen is widely counterfeited, so we photograph casting marks and part numbers.',
   },
@@ -198,7 +198,7 @@ export const BRANDS = [
     slug: 'rays',
     name: 'Rays (Volk Racing)',
     category: 'wheels',
-    logo: null,
+    logo: '/assets/brands/rays.svg',
     blurb:
       'Forged wheels, including the Volk Racing TE37 and CE28. Heavily counterfeited, so we check forging stamps, date codes and weight before we buy.',
   },
@@ -230,9 +230,17 @@ export const BRANDS = [
     slug: 'bride',
     name: 'Bride',
     category: 'interior',
-    logo: null,
+    logo: '/assets/brands/bride.svg',
     blurb:
       'Fixed-back and reclining bucket seats, plus chassis-specific seat rails. The rail is as chassis-specific as the seat, and we quote both together.',
+  },
+  {
+    slug: 'momo',
+    name: 'MOMO',
+    category: 'interior',
+    logo: '/assets/brands/momo.svg',
+    blurb:
+      'Steering wheels, gear knobs and hubs. Italian rather than Japanese, but fitted to so many JDM cars from the factory and by their first owners that it is part of the landscape.',
   },
   {
     slug: 'recaro',
@@ -287,14 +295,13 @@ export const brandCategoryLabel = (slug) =>
 export const FEATURED_BRAND_SLUGS = [
   'tein',
   'hks',
-  'nismo',
-  'cusco',
   'rays',
   'bride',
-  'apexi',
+  'mugen',
+  'spoon-sports',
+  'nismo',
+  'cusco',
   'trd',
   'endless',
   'tomei',
-  'mugen',
-  'fujitsubo',
 ];
