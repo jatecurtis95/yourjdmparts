@@ -66,7 +66,6 @@ export const HEARD_FROM = [
   { value: 'search', label: 'Search engine' },
   { value: 'workshop', label: 'My workshop or mechanic' },
   { value: 'friend', label: 'Word of mouth' },
-  { value: 'jdm-connect', label: 'JDM Connect' },
   { value: 'social', label: 'Social media' },
   { value: 'other', label: 'Somewhere else' },
 ];

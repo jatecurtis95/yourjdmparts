@@ -20,7 +20,6 @@ export const SITE = {
   state: 'Western Australia',
   // Sea freight route, taken from the existing site.
   route: { from: 'Yokohama', to: 'Fremantle' },
-  sisterCompany: { name: 'JDM Connect', blurb: 'imports whole vehicles' },
 };
 
 /** Shown in the trade strip above the nav. */

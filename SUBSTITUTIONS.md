@@ -137,3 +137,18 @@ and there are tests that fail if any appear.
   confirmation screen tells the sender where to email photographs meanwhile.
 - **Request delivery.** Validated submissions POST to `REQUEST_WEBHOOK` if it
   is set, and are logged otherwise. One secret, one integration point.
+
+## 10. Settled with the owner
+
+Two things the brief and the previous live site disagreed on, decided
+2026-08-10:
+
+- **The name is Your JDM Parts.** The site it replaced was JDM Bridge, and
+  the contact email (`info@jdmbridge.com.au`) and Instagram
+  (`@jdmbridge_au`) are still on that name. They are used as-is because
+  they work; swapping them is a one-line change in `src/config.js`, which
+  carries a comment saying so.
+- **Parts only.** JDM Bridge also did vehicle imports, auction sourcing,
+  compliance and registration. None of that is claimed here, and the
+  "sister company to JDM Connect" line the brief asked for has been removed
+  from the footer, How it works and the enquiry form.

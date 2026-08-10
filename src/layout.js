@@ -93,7 +93,7 @@ function Footer() {
       </div>
       <div class="site-footer__base">
         <span>© ${year} ${SITE.name} · ${SITE.suburb}, ${SITE.city} ${SITE.state}</span>
-        <span>Sister company to ${SITE.sisterCompany.name}, which ${SITE.sisterCompany.blurb}.</span>
+        <span>Japanese domestic market parts, sourced to order and shipped Australia-wide.</span>
       </div>
     </div>
   </footer>`;

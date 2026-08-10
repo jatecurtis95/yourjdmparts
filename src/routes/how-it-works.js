@@ -1,6 +1,6 @@
 import { html } from '../html.js';
 import { Page } from '../layout.js';
-import { SITE, TRADE } from '../config.js';
+import { TRADE } from '../config.js';
 import { Button, Pattern } from '../components/ui.js';
 import { ToriiMark } from '../components/logo.js';
 import { CHASSIS } from '../data/chassis.js';
@@ -147,10 +147,11 @@ export function HowItWorksPage() {
       <div class="container band__inner">
         <div class="band__copy">
           <p class="eyebrow">${formatNumber(CHASSIS.length)} chassis codes and counting</p>
-          <h2 class="display-2">Looking for the whole car, not the part</h2>
+          <h2 class="display-2">Start with one part</h2>
           <p class="lede">
-            ${SITE.sisterCompany.name} ${SITE.sisterCompany.blurb}. Same buying network, same
-            inspection standard, same landed pricing.
+            You do not need to know the part number, and you do not need to be sure it exists.
+            Send us the car and the problem, and we will tell you what we can find and what it
+            lands at.
           </p>
         </div>
         ${Button({ label: 'Request a part', href: '/request', variant: 'sunrise', size: 'lg' })}

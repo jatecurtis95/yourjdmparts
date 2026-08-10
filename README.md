@@ -4,8 +4,11 @@ The public website for yourjdmparts.com.
 
 **We are a sourcing service, not a shop.** We hold no stock. Someone tells us
 the car and the part, we go and find it in Japan, and we come back with a
-landed Australian dollar price. Sister company to JDM Connect, which imports
-whole vehicles.
+landed Australian dollar price.
+
+**Parts only.** The site makes no claim about vehicle imports, auction
+sourcing, compliance or registration, and should not start making one
+without the pages to back it up.
 
 That model is load-bearing throughout this codebase: there are no prices, no
 stock counts and no SKUs anywhere in the data or the markup, and there are
