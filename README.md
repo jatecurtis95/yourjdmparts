@@ -35,10 +35,13 @@ publishing path.
 
 ## First-time setup
 
-Two repository secrets, both from the Cloudflare dashboard:
+**One repository secret**, at Settings → Secrets and variables → Actions:
 
-- `CLOUDFLARE_API_TOKEN` — with the *Edit Cloudflare Workers* template
-- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_API_TOKEN` — the *Edit Cloudflare Workers* template. The same
+  token the `jdm-vehicle-finder` repo already uses works here; it is the same
+  Cloudflare account.
+
+The account ID is not a secret and is set directly in `deploy.yml`.
 
 One optional Worker secret:
 
