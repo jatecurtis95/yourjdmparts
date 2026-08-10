@@ -7,9 +7,15 @@ export const SITE = {
   tagline: 'Genuine parts, inspected and landed',
   description:
     'We source genuine and aftermarket Japanese domestic market car parts to order — found in Japan, inspected, and quoted in landed Australian dollars with duty and GST included.',
-  email: 'parts@yourjdmparts.com',
-  phone: '',
+  // Real details, taken from the live site. Note the email and the social
+  // handle are on the JDM Bridge name — if the rebrand to Your JDM Parts
+  // goes ahead, these are the things that need changing with it.
+  email: 'info@jdmbridge.com.au',
+  phone: '0494 070 106',
+  phoneIntl: '+61494070106',
+  instagram: 'jdmbridge_au',
   abn: '',
+  suburb: 'Maida Vale',
   city: 'Perth',
   state: 'Western Australia',
   // Sea freight route, taken from the existing site.
@@ -45,7 +51,7 @@ export const NAV = [
   { href: '/what-we-source', label: 'What we source' },
   { href: '/brands', label: 'Brands' },
   { href: '/how-it-works', label: 'How it works' },
-  { href: '/request', label: 'Request a part' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 /** Chassis codes shown in the ticker. */

@@ -5,6 +5,7 @@ import { BrandsPage, BrandPage } from './routes/brands.js';
 import { ChassisPage } from './routes/chassis.js';
 import { RequestPage, handleRequestSubmit } from './routes/request.js';
 import { HowItWorksPage } from './routes/how-it-works.js';
+import { ContactPage } from './routes/contact.js';
 import { NotFoundPage } from './routes/not-found.js';
 import { sitemapXml, robotsTxt } from './routes/sitemap.js';
 import { getChassis } from './data/chassis.js';
@@ -84,6 +85,8 @@ export async function route(request, env = {}) {
       return htmlResponse(RequestPage({ url }));
     case '/how-it-works':
       return htmlResponse(HowItWorksPage());
+    case '/contact':
+      return htmlResponse(ContactPage());
     case '/sitemap.xml':
       return new Response(sitemapXml(), {
         headers: { 'content-type': 'application/xml; charset=utf-8' },

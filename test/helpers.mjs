@@ -43,6 +43,7 @@ export const PAGE_PATHS = [
   '/brands/nismo',
   '/how-it-works',
   '/request',
+  '/contact',
   '/JZA80',
   '/BNR34',
 ];

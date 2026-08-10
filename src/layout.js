@@ -80,13 +80,19 @@ function Footer() {
           <h2 class="footer-col__title">Company</h2>
           <ul>
             <li><a href="/how-it-works">How it works</a></li>
-            <li><a href="/request">Request a part</a></li>
+            <li><a href="/contact">Contact</a></li>
             <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
+            <li><a href="tel:${SITE.phoneIntl}">${SITE.phone}</a></li>
+            <li>
+              <a href="https://www.instagram.com/${SITE.instagram}" rel="me noopener">
+                Instagram
+              </a>
+            </li>
           </ul>
         </div>
       </div>
       <div class="site-footer__base">
-        <span>© ${year} ${SITE.name} · ${SITE.city}, ${SITE.state}</span>
+        <span>© ${year} ${SITE.name} · ${SITE.suburb}, ${SITE.city} ${SITE.state}</span>
         <span>Sister company to ${SITE.sisterCompany.name}, which ${SITE.sisterCompany.blurb}.</span>
       </div>
     </div>

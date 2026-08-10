@@ -32,6 +32,7 @@ const ROUTES = [
   { path: '/request?chassis=JZA80&part=coilovers' },
   { path: '/request?brand=tein' },
   { path: '/how-it-works' },
+  { path: '/contact' },
   // The 404 page is supposed to 404. Its document status is not a defect,
   // but a missing stylesheet or font on it still would be.
   { path: '/no-such-page', status: 404 },

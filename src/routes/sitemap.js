@@ -3,7 +3,7 @@ import { CHASSIS } from '../data/chassis.js';
 import { BRANDS } from '../data/brands.js';
 import { CATEGORIES } from '../data/catalogue.js';
 
-const STATIC_PATHS = ['/', '/what-we-source', '/brands', '/how-it-works', '/request'];
+const STATIC_PATHS = ['/', '/what-we-source', '/brands', '/how-it-works', '/request', '/contact'];
 
 const escapeXml = (s) =>
   String(s).replace(
