@@ -126,8 +126,15 @@ export async function route(request, env = {}) {
 
 /**
  * Deny indexing at the header level on any host that is not the canonical
- * domain. A header beats a meta tag: it covers assets, the sitemap and PDFs
- * as well as HTML, and a crawler cannot miss it by not parsing the body.
+ * domain. A header beats a meta tag: it reaches robots.txt, the sitemap and
+ * the 404 as well as the pages, and a crawler cannot miss it by declining to
+ * parse the body.
+ *
+ * It does not reach /assets/*. Cloudflare's asset server answers those before
+ * the Worker is invoked, and routing them through it (`run_worker_first`)
+ * would cost an invocation on every stylesheet and font request on the real
+ * domain to fix an off-domain problem. Stylesheets and fonts are not the
+ * duplicate-content risk; the pages are, and the pages are covered.
  *
  * @param {Response} response
  */
