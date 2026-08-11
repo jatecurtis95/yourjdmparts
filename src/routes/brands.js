@@ -80,8 +80,7 @@ export function BrandsPage(url) {
       </div>
     </div>
 
-    <section class="band patterned">
-      ${Pattern()}
+    <section class="band">
       <div class="container band__inner">
         <div class="band__copy">
           <p class="eyebrow">Counterfeits</p>

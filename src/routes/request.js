@@ -215,7 +215,7 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
       <input id="company-website" type="text" name="companyWebsite" tabindex="-1" autocomplete="off" />
     </div>
 
-    <fieldset class="fieldset">
+    <fieldset class="fieldset" data-step data-step-title="Your car">
       <legend class="fieldset__legend">The car</legend>
       <p class="fieldset__intro">
         Fitment on these cars turns on details that a make and model alone will not settle. The
@@ -232,6 +232,15 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
           value: v('chassisCode'),
           hint: `The code on the build plate. We know ${chassisCodes.slice(0, 4).join(', ')} and more well.`,
         })}
+      </div>
+
+      <details class="details" data-vehicle-extra>
+        <summary class="details__summary">Add more vehicle details</summary>
+        <p class="fieldset__intro" style="margin-top: var(--space-4)">
+          None of this is required. Every field you can fill in is one fewer thing we have to
+          guess, and it is what stops us finding you a part that does not fit.
+        </p>
+        <div class="form-grid">
         ${Input({
           name: 'chassisNumber',
           label: 'Chassis number or VIN',
@@ -257,10 +266,11 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
         ${Select({ name: 'bodyStyle', label: 'Body style', required: false, placeholder: 'Select', options: BODY_STYLES, value: v('bodyStyle') })}
         ${Input({ name: 'paintCode', label: 'Paint colour code', required: false, placeholder: 'TV2, NH-0', value: v('paintCode'), hint: 'Only matters if you want a panel that arrives already the right colour.' })}
         ${Input({ name: 'odometer', label: 'Odometer', required: false, inputmode: 'numeric', placeholder: '84220', value: v('odometer'), error: e('odometer'), hint: 'In kilometres. Helps us judge what wear is reasonable on a matching part.' })}
-      </div>
+        </div>
+      </details>
     </fieldset>
 
-    <fieldset class="fieldset">
+    <fieldset class="fieldset" data-step data-step-title="The part">
       <legend class="fieldset__legend">The parts</legend>
       <p class="fieldset__intro">
         One request covers as many parts as you need for this car — you do not have to send
@@ -314,7 +324,7 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
       </div>
     </fieldset>
 
-    <fieldset class="fieldset">
+    <fieldset class="fieldset" data-step data-step-title="Your details">
       <legend class="fieldset__legend">You</legend>
       <p class="fieldset__intro">
         We come back with a landed A$ price within ${TRADE.quoteDays} business days. No deposit
@@ -339,7 +349,7 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
       </div>
     </fieldset>
 
-    <div class="cluster">
+    <div class="cluster" data-submit-row>
       ${Button({ label: 'Request my free landed quote', variant: 'bone', size: 'lg', type: 'submit' })}
       <p class="muted" style="font-size: var(--size-small)">
         Answer within ${TRADE.quoteDays} business days. Nothing is charged to quote.

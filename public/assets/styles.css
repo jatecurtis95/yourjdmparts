@@ -660,7 +660,7 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
 
 /* ── Stat band ──────────────────────────────────────────────── */
 
-.stat-band { border-block: 1px solid var(--hairline-gold); }
+.stat-band { border-block: 1px solid var(--hairline-gold); background: var(--surface-sunken); }
 
 .stat-band__grid {
   display: grid;
@@ -1462,3 +1462,116 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
 @media (max-width: 900px) {
   .nav__cta-mobile { display: inline-flex; margin-top: var(--space-4); }
 }
+
+/* ── Request form steps ─────────────────────────────────────────
+   Built by app.js, so none of this exists without JavaScript — and
+   without JavaScript the form is simply one page, which is the
+   behaviour it had before steps were introduced. */
+
+/* The header is sticky; without this the step heading lands underneath it. */
+[data-request-form] { scroll-margin-top: var(--space-6); }
+[data-step] legend { scroll-margin-top: 120px; }
+
+.steps-progress {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.steps-progress__step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 0;
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--hairline);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.steps-progress__step[data-state='current'] { border-top-color: var(--sunrise); color: var(--text-primary); }
+.steps-progress__step[data-state='done'] { border-top-color: var(--gold); }
+
+.steps-progress__n {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: var(--size-micro);
+}
+
+.steps-progress__label {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: var(--size-small);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .steps-progress__label { display: none; }
+  .steps-progress__step { justify-content: center; }
+}
+
+.step-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--hairline);
+}
+
+.fieldset legend:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; }
+
+/* ── Collapsible specialist fields ──────────────────────────────
+   Eight empty technical boxes read as "you are not qualified to ask". */
+
+.details {
+  margin-top: var(--space-5);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.details__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--hit);
+  cursor: pointer;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: var(--size-small);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--text-accent);
+  list-style: none;
+}
+
+.details__summary::-webkit-details-marker { display: none; }
+
+.details__summary::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--motion) var(--ease);
+}
+
+.details[open] .details__summary::before { transform: rotate(45deg); }
+.details__summary:hover { color: var(--text-primary); }

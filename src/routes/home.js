@@ -150,8 +150,7 @@ function StatBand() {
     { value: 'Nothing', label: 'Charged before you see the price' },
   ];
 
-  return html`<section class="stat-band patterned">
-    ${Pattern()}
+  return html`<section class="stat-band">
     <div class="container">
       <div class="stat-band__grid">
         ${stats.map(
@@ -211,8 +210,7 @@ function ChassisIndex() {
 /* ── Closing enquiry band ───────────────────────────────────── */
 
 function ClosingBand() {
-  return html`<section class="band patterned">
-    ${Pattern()}
+  return html`<section class="band">
     <div class="container band__inner">
       <div class="band__copy">
         <p class="eyebrow">Start here</p>

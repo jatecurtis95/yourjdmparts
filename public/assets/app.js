@@ -93,6 +93,107 @@
     }
   });
 
+
+  /* ── Three-step request form ──────────────────────────────────
+     Progressive enhancement in the strict sense: the markup is one
+     form with three fieldsets, so with no JavaScript you get the whole
+     thing on one page and one submit — which is exactly what shipped
+     before this. JavaScript panes it into steps. Because it stays a
+     single form, file uploads and server validation are untouched. */
+
+  function initSteps(form) {
+    var steps = Array.prototype.slice.call(form.querySelectorAll('[data-step]'));
+    if (steps.length < 2) return;
+
+    var current = 0;
+
+    // Progress indicator, built here so it never appears without JS.
+    var progress = document.createElement('ol');
+    progress.className = 'steps-progress';
+    progress.setAttribute('aria-label', 'Progress');
+    steps.forEach(function (step, i) {
+      var li = document.createElement('li');
+      li.className = 'steps-progress__step';
+      li.innerHTML =
+        '<span class="steps-progress__n">' + (i + 1) + '</span>' +
+        '<span class="steps-progress__label">' + step.getAttribute('data-step-title') + '</span>';
+      progress.appendChild(li);
+    });
+    form.insertBefore(progress, form.firstChild);
+
+    // Navigation, one row per step.
+    var navs = steps.map(function (step, i) {
+      var nav = document.createElement('div');
+      nav.className = 'step-nav';
+      if (i > 0) {
+        var back = document.createElement('button');
+        back.type = 'button';
+        back.className = 'btn btn--outline';
+        back.textContent = 'Back';
+        back.addEventListener('click', function () { go(i - 1); });
+        nav.appendChild(back);
+      }
+      if (i < steps.length - 1) {
+        var next = document.createElement('button');
+        next.type = 'button';
+        next.className = 'btn btn--bone';
+        next.textContent = 'Next';
+        next.addEventListener('click', function () { if (validate(i)) go(i + 1); });
+        nav.appendChild(next);
+      }
+      step.appendChild(nav);
+      return nav;
+    });
+
+    // The real submit lives on the last step only.
+    var submitRow = form.querySelector('[data-submit-row]');
+    if (submitRow) steps[steps.length - 1].appendChild(submitRow);
+
+    /** Let the browser check this step's own required fields before moving on. */
+    function validate(index) {
+      var fields = steps[index].querySelectorAll('input, select, textarea');
+      for (var i = 0; i < fields.length; i++) {
+        var f = fields[i];
+        if (f.willValidate && !f.checkValidity()) {
+          f.reportValidity();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    function go(index, options) {
+      var moveFocus = !(options && options.initial);
+      current = index;
+      steps.forEach(function (step, i) { step.hidden = i !== index; });
+      Array.prototype.forEach.call(progress.children, function (li, i) {
+        li.setAttribute('data-state', i === index ? 'current' : i < index ? 'done' : 'todo');
+        if (i === index) li.setAttribute('aria-current', 'step');
+        else li.removeAttribute('aria-current');
+      });
+      // On the first render there is nothing to announce and nowhere to
+      // move to — scrolling here would yank the visitor past the page
+      // heading the moment the script loads.
+      if (!moveFocus) return;
+
+      var legend = steps[index].querySelector('legend');
+      if (legend) {
+        legend.setAttribute('tabindex', '-1');
+        legend.focus({ preventScroll: true });
+      }
+      form.scrollIntoView({ block: 'start' });
+    }
+
+    // If the server sent back errors, open the step holding the first one
+    // rather than dropping the visitor on step 1 with no idea what happened.
+    var firstError = form.querySelector('[aria-invalid="true"], .field__error');
+    var start = 0;
+    if (firstError) {
+      steps.forEach(function (step, i) { if (step.contains(firstError)) start = i; });
+    }
+    go(start, { initial: true });
+  }
+
   /* ── Tabs ─────────────────────────────────────────────────── */
 
   function initTabs(root) {
@@ -182,6 +283,7 @@
 
   function boot() {
     document.querySelectorAll('[data-tabs]').forEach(initTabs);
+    document.querySelectorAll('[data-request-form]').forEach(initSteps);
     var list = partsList();
     if (list) updateAddButton(list.querySelectorAll('[data-part-block]').length);
   }

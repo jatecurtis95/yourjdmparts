@@ -78,8 +78,7 @@ export function HowItWorksPage() {
 
     ${PANELS.map((panel, index) => Panel({ panel, index }))}
 
-    <section class="stat-band patterned">
-      ${Pattern()}
+    <section class="stat-band">
       <div class="container">
         <div class="stat-band__grid">
           ${stats.map(
@@ -142,8 +141,7 @@ export function HowItWorksPage() {
       </div>
     </section>
 
-    <section class="band patterned">
-      ${Pattern()}
+    <section class="band">
       <div class="container band__inner">
         <div class="band__copy">
           <p class="eyebrow">${formatNumber(CHASSIS.length)} chassis codes and counting</p>

@@ -163,8 +163,7 @@ export function ChassisPage({ chassis }) {
       </div>
     </section>
 
-    <section class="band patterned">
-      ${Pattern()}
+    <section class="band">
       <div class="container band__inner">
         <div class="band__copy">
           <p class="eyebrow">${chassis.code}</p>
