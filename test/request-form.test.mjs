@@ -152,7 +152,7 @@ test('one request can carry several parts through to the payload', async () => {
       postcode: '3121',
       state: 'VIC',
       urgency: 'month',
-      consent: 'yes',
+      marketingConsent: 'yes',
     })) {
       body.append(key, value);
     }
@@ -182,8 +182,46 @@ test('one request can carry several parts through to the payload', async () => {
   assert.equal(payload.parts[1].brand, 'Tein');
   assert.equal(payload.parts[1].quantity, 4);
 
-  assert.equal(payload.contact.consent, true);
+  assert.equal(payload.contact.marketingConsent, true);
   assert.equal(payload.contact.email, 'sam@example.com');
+});
+
+test('marketing consent is off unless it is actually ticked', async () => {
+  // Contacting someone about the request they sent needs no tick. Anything
+  // beyond it does, so the absence of the field must never read as consent.
+  const captured = [];
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    captured.push(JSON.parse(init.body));
+    return new Response('ok');
+  };
+  try {
+    const body = new FormData();
+    for (const [k, v] of Object.entries(VEHICLE)) body.append(k, v);
+    body.append('parts[0][description]', 'Front guard');
+    await handleRequestSubmit(new Request(ORIGIN + '/request', { method: 'POST', body }), {
+      REQUEST_WEBHOOK: 'https://example.invalid/hook',
+    });
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+
+  assert.equal(captured[0].contact.marketingConsent, false);
+});
+
+test('the form separates fulfilment contact from marketing consent', async () => {
+  const { html: markup } = await getHtml('/request');
+  const boxes = markup.match(/<input type="checkbox"[^>]*>/g) ?? [];
+  const ticked = boxes.filter((b) => /\bchecked\b/.test(b));
+  assert.equal(ticked.length, 0, 'no consent box may ship pre-ticked');
+  assert.match(markup, /name="marketingConsent"/);
+  assert.doesNotMatch(
+    markup,
+    /name="consent"/,
+    'the combined consent box mixed two purposes and is gone',
+  );
+  // The fulfilment purpose is stated in prose rather than asked for.
+  assert.match(markup, /Sending this request means we will contact you about it/);
 });
 
 test('empty part blocks are dropped rather than sent as blanks', async () => {

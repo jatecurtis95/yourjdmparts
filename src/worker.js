@@ -94,7 +94,7 @@ export async function route(request, env = {}) {
         headers: { 'content-type': 'application/xml; charset=utf-8' },
       });
     case '/robots.txt':
-      return new Response(robotsTxt({ allow: isProductionHost() }), {
+      return new Response(robotsTxt({ production: isProductionHost() }), {
         headers: { 'content-type': 'text/plain; charset=utf-8' },
       });
     default:
@@ -124,6 +124,20 @@ export async function route(request, env = {}) {
   return null;
 }
 
+/**
+ * Deny indexing at the header level on any host that is not the canonical
+ * domain. A header beats a meta tag: it covers assets, the sitemap and PDFs
+ * as well as HTML, and a crawler cannot miss it by not parsing the body.
+ *
+ * @param {Response} response
+ */
+function guard(response) {
+  if (isProductionHost()) return response;
+  const copy = new Response(response.body, response);
+  copy.headers.set('x-robots-tag', 'noindex, nofollow');
+  return copy;
+}
+
 export default {
   /**
    * @param {Request} request
@@ -131,25 +145,27 @@ export default {
    */
   async fetch(request, env) {
     const url = new URL(request.url);
+    // Set before anything returns, so assets are covered too.
+    setHost(url);
 
     // Static assets are served straight from ./public.
     if (url.pathname.startsWith('/assets/') && env.ASSETS) {
-      return env.ASSETS.fetch(request);
+      return guard(await env.ASSETS.fetch(request));
     }
 
     try {
       const response = await route(request, env);
-      if (response) return response;
+      if (response) return guard(response);
     } catch (error) {
       console.error('Unhandled error', error);
-      return htmlResponse(NotFoundPage({ path: url.pathname, serverError: true }), 500);
+      return guard(htmlResponse(NotFoundPage({ path: url.pathname, serverError: true }), 500));
     }
 
     if (env.ASSETS) {
       const asset = await env.ASSETS.fetch(request);
-      if (asset.status !== 404) return asset;
+      if (asset.status !== 404) return guard(asset);
     }
 
-    return htmlResponse(NotFoundPage({ path: url.pathname }), 404);
+    return guard(htmlResponse(NotFoundPage({ path: url.pathname }), 404));
   },
 };

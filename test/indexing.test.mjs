@@ -7,7 +7,12 @@ import { SITE } from '../src/config.js';
  * Every page canonicalises to the production domain. Serving that markup
  * from anywhere else tells a crawler the real page lives at a URL that may
  * be serving something entirely different, so preview hosts must be
- * noindexed and disallowed.
+ * noindexed.
+ *
+ * Noindex, not Disallow. A crawler blocked in robots.txt never fetches the
+ * page and so never reads the directive, which leaves the URL eligible for
+ * a bare listing. Preview hosts therefore invite the crawl and refuse the
+ * index, in the meta tag and the X-Robots-Tag header.
  */
 
 const PREVIEW = 'https://yourjdmparts.jate-curtis.workers.dev';
@@ -27,10 +32,32 @@ test('the production host is indexable', async () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/yourjdmparts\.com\/"/);
 });
 
-test('robots.txt disallows everything on a preview host', async () => {
+test('robots.txt on a preview host invites the crawl and withholds the sitemap', async () => {
   const body = await get(PREVIEW, '/robots.txt').then((r) => r.text());
-  assert.match(body, /Disallow: \//);
+  assert.match(body, /Allow: \//, 'the crawler must be able to fetch the page to read the noindex');
+  assert.doesNotMatch(body, /Disallow: \//);
   assert.doesNotMatch(body, /Sitemap:/, 'a preview must not advertise the production sitemap');
+});
+
+test('a preview host sends X-Robots-Tag on every response', async () => {
+  // The meta tag only covers HTML pages we render. robots.txt, the sitemap
+  // and the 404 need the header, and so does anything a crawler reaches
+  // without parsing a body.
+  for (const path of ['/', '/brands', '/robots.txt', '/sitemap.xml', '/nothing-here']) {
+    const response = await get(PREVIEW, path);
+    assert.equal(
+      response.headers.get('x-robots-tag'),
+      'noindex, nofollow',
+      `${path} must carry the header off-domain`,
+    );
+  }
+});
+
+test('the production host sends no X-Robots-Tag', async () => {
+  for (const path of ['/', '/brands', '/robots.txt', '/sitemap.xml']) {
+    const response = await get(SITE.origin, path);
+    assert.equal(response.headers.get('x-robots-tag'), null, `${path} must be indexable on the real domain`);
+  }
 });
 
 test('robots.txt allows crawling on the production host', async () => {

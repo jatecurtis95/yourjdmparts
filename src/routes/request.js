@@ -340,11 +340,21 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
         ${Select({ name: 'heardFrom', label: 'How you found us', required: false, placeholder: 'Select', options: HEARD_FROM, value: v('heardFrom') })}
       </div>
 
-      <div style="margin-top: var(--space-5)">
+      <div class="stack" style="margin-top: var(--space-5)">
+        <!-- Contacting you about this request is what sending it is for, so
+             it is stated rather than ticked. The only thing that needs
+             consent is the part we would do beyond it, and that starts
+             unticked. -->
+        <p class="muted" style="font-size: var(--size-small)">
+          Sending this request means we will contact you about it — to quote it, to ask a
+          fitment question, and to tell you if we cannot find the part. We use your details
+          for that and nothing else.
+        </p>
         ${Checkbox({
-          name: 'consent',
-          label: 'You may contact me about this request and about parts that match it.',
-          checked: values.consent === 'yes',
+          name: 'marketingConsent',
+          label:
+            'Separately, you may also send me parts and arrivals that suit my car, beyond this request.',
+          checked: values.marketingConsent === 'yes',
         })}
       </div>
     </fieldset>
@@ -579,7 +589,9 @@ export async function handleRequestSubmit(request, env = {}) {
       state: data.state || null,
       postcode: data.postcode || null,
       heardFrom: data.heardFrom || null,
-      consent: data.consent === 'yes',
+      // Contact about this request is implied by sending it. This flag is
+      // only about anything beyond it, so it must never be assumed true.
+      marketingConsent: data.marketingConsent === 'yes',
     },
   };
 

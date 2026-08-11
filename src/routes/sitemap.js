@@ -31,12 +31,23 @@ export function sitemapXml() {
 }
 
 /**
- * @param {{allow?: boolean}} [options] allow=false on any host that is not
- *   the production domain, so previews are never crawled.
+ * @param {{production?: boolean}} [options]
+ *
+ * A preview host deliberately still allows crawling. Disallowing it would
+ * stop a crawler ever fetching the page, and therefore ever seeing the
+ * noindex — leaving the URL eligible for a bare, contentless listing.
+ * Indexing is denied by the X-Robots-Tag header and the meta tag instead,
+ * both of which require the crawler to actually read the response.
  */
-export function robotsTxt({ allow = true } = {}) {
-  if (!allow) {
-    return `# Not the production domain. Nothing here should be indexed.\nUser-agent: *\nDisallow: /\n`;
+export function robotsTxt({ production = true } = {}) {
+  if (!production) {
+    return [
+      '# Preview host. Crawling is allowed so the X-Robots-Tag: noindex',
+      '# header can be read; indexing is denied there, not here.',
+      'User-agent: *',
+      'Allow: /',
+      '',
+    ].join('\n');
   }
   return `User-agent: *\nAllow: /\n\nSitemap: ${SITE.origin}/sitemap.xml\n`;
 }
