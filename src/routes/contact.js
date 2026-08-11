@@ -1,6 +1,6 @@
 import { html } from '../html.js';
 import { Page } from '../layout.js';
-import { SITE, TRADE } from '../config.js';
+import { SITE, TRADE, LEGAL, OPERATOR, hasLegalIdentity } from '../config.js';
 import { Button, Pattern, Card } from '../components/ui.js';
 import { Breadcrumb, SpecTable } from '../components/blocks.js';
 import { Icon } from '../components/icon.js';
@@ -47,6 +47,7 @@ export function ContactPage() {
     url: `${SITE.origin}/contact`,
     email: SITE.email,
     telephone: SITE.phoneIntl,
+    ...(hasLegalIdentity() ? { legalName: LEGAL.entityName, taxID: LEGAL.abn } : {}),
     address: {
       '@type': 'PostalAddress',
       addressLocality: SITE.suburb,
@@ -109,7 +110,15 @@ export function ContactPage() {
             children: html`<h2 class="display-3" style="margin-bottom: var(--space-5)">Where we are</h2>
               ${SpecTable({
                 rows: [
-                  { label: 'Based in', value: `${SITE.suburb}, ${SITE.city} ${SITE.state}` },
+                  { label: 'Trading as', value: SITE.name },
+                  ...(hasLegalIdentity()
+                    ? [
+                        { label: 'Registered name', value: LEGAL.entityName },
+                        { label: 'ABN', value: LEGAL.abn },
+                      ]
+                    : []),
+                  { label: 'Run by', value: `${OPERATOR.firstName}, ${OPERATOR.role.toLowerCase()}` },
+                  { label: 'Based in', value: SITE.location },
                   { label: 'Freight route', value: `${SITE.route.from} to ${SITE.route.to}` },
                   { label: 'We ship', value: 'Australia-wide' },
                   { label: 'Languages', value: 'English and Japanese' },
@@ -120,6 +129,10 @@ export function ContactPage() {
               <p class="muted" style="font-size: var(--size-small)">
                 We are a sourcing service rather than a shopfront, so there is nothing to walk
                 into. Everything happens by email, phone or the request form.
+              </p>
+              <p class="muted" style="margin-top: var(--space-3); font-size: var(--size-small)">
+                <a href="/about">More about who you are dealing with</a>, or read the
+                <a href="/terms">terms</a> and <a href="/privacy">privacy policy</a>.
               </p>`,
           })}
         </div>

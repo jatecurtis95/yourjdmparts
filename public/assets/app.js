@@ -12,6 +12,58 @@
 (function () {
   'use strict';
 
+  /* ── Measurement ──────────────────────────────────────────────
+     There is no approved analytics vendor on this project, so this
+     adds none. No script is loaded, no request leaves the page, no
+     cookie is set and no identifier is minted. Events are announced
+     on the document and buffered on window.yourJdmParts.events; it
+     is a deliberate later decision whether anything listens.
+
+     To wire an approved sink later, listen once and replay:
+
+       document.addEventListener('yjp:event', function (e) {
+         send(e.detail.name, e.detail.params);
+       });
+
+     WHAT MAY BE MEASURED — the allowlist below is the whole
+     contract, and it is enforced here rather than trusted to call
+     sites. Names, emails, phone numbers, VINs, chassis numbers,
+     part descriptions, budgets, postcodes and uploaded filenames
+     are customer data, not metrics. Only counts, positions and the
+     *names* of fields ever appear — never a value somebody typed.
+     Anything not on the list is dropped, so a careless call site
+     added later cannot leak by accident.                          */
+
+  var ALLOWED_PARAMS = ['step', 'step_title', 'step_count', 'field', 'field_count', 'part_count'];
+
+  var api = (window.yourJdmParts = window.yourJdmParts || {});
+  api.events = api.events || [];
+
+  function track(name, params) {
+    var safe = {};
+    if (params) {
+      for (var i = 0; i < ALLOWED_PARAMS.length; i++) {
+        var key = ALLOWED_PARAMS[i];
+        if (params[key] === undefined || params[key] === null) continue;
+        var value = params[key];
+        // Numbers pass through; strings are truncated hard so a typed
+        // value can never ride along inside something meant as a label.
+        safe[key] = typeof value === 'number' ? value : String(value).slice(0, 40);
+      }
+    }
+    var detail = { name: name, params: safe };
+    api.events.push(detail);
+    document.dispatchEvent(new CustomEvent('yjp:event', { detail: detail }));
+  }
+
+  api.track = track;
+
+  /** Field name only — never its value, and never the array indices. */
+  function fieldName(field) {
+    var name = field.getAttribute('name') || field.id || 'unknown';
+    return name.replace(/\[\d+]/g, '').replace(/^parts\[?|]$/g, '');
+  }
+
   /* ── Repeatable part blocks ───────────────────────────────── */
 
   function partsList() {
@@ -155,6 +207,7 @@
       for (var i = 0; i < fields.length; i++) {
         var f = fields[i];
         if (f.willValidate && !f.checkValidity()) {
+          track('quote_form_validation_error', { step: index + 1, field: fieldName(f) });
           f.reportValidity();
           return false;
         }
@@ -171,6 +224,12 @@
         if (i === index) li.setAttribute('aria-current', 'step');
         else li.removeAttribute('aria-current');
       });
+      track('quote_step_viewed', {
+        step: index + 1,
+        step_count: steps.length,
+        step_title: steps[index].getAttribute('data-step-title'),
+      });
+
       // On the first render there is nothing to announce and nowhere to
       // move to — scrolling here would yank the visitor past the page
       // heading the moment the script loads.
@@ -184,6 +243,21 @@
       form.scrollIntoView({ block: 'start' });
     }
 
+    // "Started" means the visitor actually engaged, not that the page
+    // loaded — a pageview is already a pageview. First real input wins,
+    // and it fires once.
+    var started = false;
+    form.addEventListener('input', function () {
+      if (started) return;
+      started = true;
+      track('quote_form_started', { step_count: steps.length });
+    });
+
+    form.addEventListener('submit', function () {
+      var blocks = form.querySelectorAll('[data-part-block]');
+      track('quote_form_submitted', { step_count: steps.length, part_count: blocks.length });
+    });
+
     // If the server sent back errors, open the step holding the first one
     // rather than dropping the visitor on step 1 with no idea what happened.
     var firstError = form.querySelector('[aria-invalid="true"], .field__error');
@@ -191,6 +265,18 @@
     if (firstError) {
       steps.forEach(function (step, i) { if (step.contains(firstError)) start = i; });
     }
+
+    // Server-side rejection. The browser never saw these, so they are
+    // counted here — by field name, never by what was typed into it.
+    var invalid = form.querySelectorAll('[aria-invalid="true"]');
+    if (invalid.length) {
+      track('quote_form_validation_error', {
+        step: start + 1,
+        field: invalid[0] ? fieldName(invalid[0]) : 'unknown',
+        field_count: invalid.length,
+      });
+    }
+
     go(start, { initial: true });
   }
 
@@ -286,6 +372,10 @@
     document.querySelectorAll('[data-request-form]').forEach(initSteps);
     var list = partsList();
     if (list) updateAddButton(list.querySelectorAll('[data-part-block]').length);
+
+    // The server renders the success view; this is the only place that
+    // knows the request actually landed rather than merely being sent.
+    if (document.querySelector('[data-quote-success]')) track('quote_form_success', {});
   }
 
   if (document.readyState === 'loading') {

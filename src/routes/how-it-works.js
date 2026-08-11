@@ -2,7 +2,9 @@ import { html } from '../html.js';
 import { Page } from '../layout.js';
 import { TRADE } from '../config.js';
 import { Button, Pattern } from '../components/ui.js';
+import { Icon } from '../components/icon.js';
 import { ToriiMark } from '../components/logo.js';
+import { PAYMENT_STAGES } from '../content/legal.js';
 import { CHASSIS } from '../data/chassis.js';
 import { BRANDS } from '../data/brands.js';
 import { formatNumber } from '../format.js';
@@ -137,6 +139,44 @@ export function HowItWorksPage() {
               <p class="muted">${c.body}</p>
             </div>`,
           )}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Money</p>
+            <h2 class="display-1">When you actually pay</h2>
+          </div>
+        </div>
+        <p class="prose" style="margin-bottom: var(--space-6); max-width: 62ch">
+          Seven stages, and only one of them costs anything. Everything before you accept a
+          quote is free, including the searching and the inspection.
+        </p>
+        <ol class="stages">
+          ${PAYMENT_STAGES.map(
+            (stage, i) => html`<li class="stage${stage.payable ? ' stage--payable' : ''}">
+              <span class="stage__n" aria-hidden="true">${i + 1}</span>
+              <div>
+                <h3 class="stage__title">
+                  ${stage.step}${stage.payable
+                    ? html`<span class="stage__flag">First payment</span>`
+                    : ''}
+                </h3>
+                <p class="stage__detail">${stage.detail}</p>
+              </div>
+            </li>`,
+          )}
+        </ol>
+        <div class="notice" style="margin-top: var(--space-6)">
+          ${Icon('info', { size: 16 })}
+          <span
+            >The full terms are on the <a href="/terms">terms page</a>, and how parts travel —
+            plus what happens if one arrives damaged — is on
+            <a href="/shipping-and-returns">shipping and returns</a>.</span
+          >
         </div>
       </div>
     </section>

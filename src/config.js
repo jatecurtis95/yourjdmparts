@@ -9,19 +9,59 @@ export const SITE = {
   tagTitle: 'JDM Parts Sourced from Japan, Landed in Australia | Your JDM Parts',
   description:
     'We source genuine and aftermarket Japanese domestic market car parts to order — found in Japan, inspected, and quoted in landed Australian dollars with duty and GST included.',
-  // Real details, taken from the live site. Note the email and the social
-  // handle are on the JDM Bridge name — if the rebrand to Your JDM Parts
-  // goes ahead, these are the things that need changing with it.
-  email: 'info@jdmbridge.com.au',
+  // Contact details. The email is on the brand's own domain, which has live
+  // Microsoft 365 mail routing; the address it replaced was on a domain that
+  // no longer resolves, so mail sent to it bounced silently.
+  email: 'info@yourjdmparts.com',
   phone: '0494 070 106',
   phoneIntl: '+61494070106',
-  instagram: 'jdmbridge_au',
-  abn: '',
+  instagram: 'yourjdmparts',
   suburb: 'Maida Vale',
   city: 'Perth',
   state: 'Western Australia',
+  // Built once, because assembling it at each call site produced
+  // "Perth Western Australia" in the footer and on the contact page.
+  get location() {
+    return `${this.suburb}, ${this.city}, ${this.state}`;
+  },
   // Sea freight route, taken from the existing site.
   route: { from: 'Yokohama', to: 'Fremantle' },
+};
+
+/**
+ * Registered business identity.
+ *
+ * These are the only two facts on this site that must come from the business
+ * register rather than from us, so both stay null until the owner supplies
+ * them. Every surface that would print them checks `hasLegalIdentity()` and
+ * shows an honest "registration details on request" line instead of a guess.
+ *
+ * Do not infer either value. A wrong ABN on a published page is a worse
+ * failure than a missing one.
+ */
+export const LEGAL = {
+  /** Registered entity name, e.g. the Pty Ltd or the registered business name. */
+  entityName: null,
+  /** Australian Business Number, 11 digits. */
+  abn: null,
+};
+
+/** True once the registered identity can be printed in full. */
+export function hasLegalIdentity() {
+  return Boolean(LEGAL.entityName && LEGAL.abn);
+}
+
+/**
+ * The person doing the work.
+ *
+ * Emi published these facts about herself on the business's previous site —
+ * that she is the founder, that she grew up in Japan, and that the searching
+ * is done in Japanese. They are carried over as hers. Her surname was never
+ * published, so it is not printed here either.
+ */
+export const OPERATOR = {
+  firstName: 'Emi',
+  role: 'Founder',
 };
 
 /** Shown in the trade strip above the nav. */
@@ -52,6 +92,7 @@ export const NAV = [
   { href: '/what-we-source', label: 'What we source' },
   { href: '/brands', label: 'Brands' },
   { href: '/how-it-works', label: 'How it works' },
+  { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
 

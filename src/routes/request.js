@@ -423,7 +423,7 @@ export function RequestPage({
     </section>
 
     ${submitted
-      ? html`<div class="container section">
+      ? html`<div class="container section" data-quote-success>
           ${Card({
             children: html`<div class="stack">
               <p class="eyebrow">Received</p>

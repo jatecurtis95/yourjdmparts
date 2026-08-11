@@ -33,9 +33,18 @@ const ROUTES = [
   { path: '/request?brand=tein' },
   { path: '/how-it-works' },
   { path: '/contact' },
+  { path: '/about' },
+  { path: '/privacy' },
+  { path: '/terms' },
+  { path: '/shipping-and-returns' },
+  { path: '/column' },
+  { path: '/column/searching-all-of-japan' },
   // The 404 page is supposed to 404. Its document status is not a defect,
   // but a missing stylesheet or font on it still would be.
   { path: '/no-such-page', status: 404 },
+  // Recent finds is hidden until a real case study exists, so its index
+  // must 404 rather than render an empty promise of proof.
+  { path: '/finds', status: 404 },
 ];
 
 async function waitForServer(timeoutMs = 90_000) {

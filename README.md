@@ -58,10 +58,16 @@ One optional Worker secret:
    `logo: null`, so the cards set the brand name in the site's own condensed
    face. Drop files in `public/assets/brands/` and set the path — see that
    directory's README for the format.
-2. **Fill in `src/config.js`** — `email`, `phone`, `abn`.
-3. **Set `REQUEST_WEBHOOK`** so part requests reach a person rather than the
-   log.
-4. Read `SUBSTITUTIONS.md` — it lists everything derived because the design
+2. **Set `REQUEST_WEBHOOK`** so part requests reach a person rather than the
+   log. Until it is set, a submitted form notifies nobody.
+3. **Attach the domain to the Worker.** It is on Cloudflare nameservers but
+   has no A record, so the apex serves nothing today.
+4. **Fill in `LEGAL` in `src/config.js`** — registered entity name and ABN.
+   Both are `null`, and the site prints nothing rather than a placeholder.
+5. Read `docs/OWNER-REVIEW.md` — everything still waiting on real material or
+   an owner decision, including the one real case study the Recent finds
+   section needs before it appears at all.
+6. Read `SUBSTITUTIONS.md` — it lists everything derived because the design
    system files were not available, and how to swap each one.
 
 ## Local development

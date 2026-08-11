@@ -538,6 +538,12 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
   padding: var(--logo-clear);
 }
 
+/* The header lockup is a link home, and on a phone it is a thumb target
+   before it is a mark. At 40px plus clear space it measured 43px, one pixel
+   under the minimum — so the link is given the height. The artwork is
+   untouched: same size, same proportions, same clear space. */
+a.logo { min-height: var(--hit); }
+
 .logo--vertical { flex-direction: column; text-align: center; gap: var(--space-2); }
 
 /* Mark-only lockup: nothing sits beside it, so it needs no gap. */
@@ -1138,7 +1144,7 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
 
 .site-footer__grid {
   display: grid;
-  grid-template-columns: 1.4fr repeat(3, 1fr);
+  grid-template-columns: 1.4fr repeat(4, 1fr);
   gap: var(--space-6);
   padding-block: var(--space-8) var(--space-7);
 }
@@ -1575,3 +1581,273 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
 
 .details[open] .details__summary::before { transform: rotate(45deg); }
 .details__summary:hover { color: var(--text-primary); }
+
+/* ══ Long-form documents ══════════════════════════════════════
+   Privacy, terms, shipping. Reading surfaces: no pattern behind
+   them, generous measure, and a contents list that sticks on wide
+   screens and simply sits at the top on narrow ones.            */
+
+.doc {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 62rem) {
+  .doc { grid-template-columns: 16rem minmax(0, 1fr); gap: var(--space-9); }
+  .doc__aside { position: sticky; top: var(--space-8); align-self: start; }
+}
+
+.doc__toc ul { list-style: none; margin: var(--space-3) 0 0; padding: 0; }
+.doc__toc li { margin-bottom: var(--space-1); }
+
+.doc__toc a {
+  display: block;
+  padding: var(--space-2) 0;
+  min-height: var(--hit);
+  display: flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-size: var(--size-small);
+  text-decoration: none;
+  border-left: 2px solid var(--hairline);
+  padding-left: var(--space-3);
+  transition: color var(--motion) var(--ease), border-color var(--motion) var(--ease);
+}
+
+.doc__toc a:hover { color: var(--text-primary); border-left-color: var(--gold); }
+
+.doc__body { max-width: var(--measure); }
+
+.doc__updated {
+  font-family: var(--font-mono);
+  font-size: var(--size-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+
+.doc__section { margin-top: var(--space-8); scroll-margin-top: var(--space-9); }
+.doc__section .display-3 { margin-bottom: var(--space-4); }
+.doc__section .prose + .prose { margin-top: var(--space-4); }
+
+.doc__list {
+  margin: var(--space-4) 0 0;
+  padding-left: var(--space-5);
+  color: var(--text-muted);
+  line-height: var(--leading-body);
+}
+
+.doc__list li { margin-bottom: var(--space-3); }
+
+/* ══ Quotation ════════════════════════════════════════════════ */
+
+.quote {
+  margin: var(--space-6) 0;
+  padding-left: var(--space-5);
+  border-left: 2px solid var(--gold);
+}
+
+.quote p {
+  font-family: var(--font-display);
+  font-size: var(--size-body-l);
+  line-height: var(--leading-snug);
+  color: var(--text-primary);
+}
+
+.quote__cite {
+  margin-top: var(--space-3);
+  font-size: var(--size-small);
+  color: var(--text-muted);
+}
+
+/* ══ Payment stages ═══════════════════════════════════════════ */
+
+.stages { list-style: none; margin: 0; padding: 0; counter-reset: stage; }
+
+.stage {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.stage:last-child { border-bottom: 1px solid var(--hairline); }
+
+.stage__n {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  color: var(--text-muted);
+}
+
+.stage--payable .stage__n { border-color: var(--sunrise); color: var(--sunrise); }
+
+.stage__title {
+  font-family: var(--font-condensed);
+  font-weight: 800;
+  font-size: var(--size-d3);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--text-primary);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.stage__flag {
+  font-family: var(--font-mono);
+  font-size: var(--size-micro);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--sunrise);
+  border: 1px solid var(--sunrise);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-2);
+}
+
+.stage__detail { margin-top: var(--space-2); color: var(--text-muted); line-height: var(--leading-body); }
+
+/* ══ Column entries ═══════════════════════════════════════════ */
+
+.article { max-width: var(--measure); }
+.article .display-3 { margin-top: var(--space-7); margin-bottom: var(--space-4); }
+.article .prose + .prose { margin-top: var(--space-4); }
+
+.article__meta {
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--size-small);
+  color: var(--text-muted);
+}
+
+.article__list { margin: var(--space-5) 0 0; }
+.article__list dt {
+  font-family: var(--font-condensed);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--text-accent);
+  margin-top: var(--space-4);
+}
+.article__list dd { margin: var(--space-2) 0 0; color: var(--text-muted); line-height: var(--leading-body); }
+
+/* ══ Recent finds ═════════════════════════════════════════════
+   Renders only when a real entry is published; the markup exists
+   so the structure is reviewable and the CSS contract holds.    */
+
+.find-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color var(--motion) var(--ease);
+}
+
+.find-card:hover { border-color: var(--gold); }
+
+.find-card__media { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+.find-card__body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+
+.find-card__title {
+  font-family: var(--font-condensed);
+  font-weight: 800;
+  font-size: var(--size-d3);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--text-primary);
+}
+
+.find-card__price {
+  margin-top: var(--space-3);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.find-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: var(--space-4);
+}
+
+.find-figure { margin: 0; }
+.find-figure img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+  display: block;
+}
+.find-figure figcaption { margin-top: var(--space-2); font-size: var(--size-small); }
+
+/* ══ Touch targets ════════════════════════════════════════════
+   Footer columns and breadcrumbs are navigation, and on a phone
+   they are thumb targets before they are text. At their reading
+   size they measured 30px and 21px respectively — comfortably
+   under the 44px minimum.
+
+   Gated on a coarse pointer or a narrow viewport rather than
+   applied everywhere: with a mouse these are precise already, and
+   44px rows would stretch the desktop footer for no gain. The
+   padding goes on the link, so nothing about the type changes. */
+
+@media (max-width: 48rem), (pointer: coarse) {
+  .footer-col a { min-height: var(--hit); }
+
+  .breadcrumb ol { gap: var(--space-3); }
+
+  .breadcrumb a,
+  .breadcrumb [aria-current='page'] {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--hit);
+  }
+}
+
+/* A card whose only link is its title reads as one target but was only
+   tappable across the title text — about 30px on a phone. The title link
+   is stretched over the whole card instead, so the target matches what
+   the card looks like. Each of these cards has exactly one link (the CTA
+   beside it is a span), so nothing is covered over.
+
+   Not gated on pointer type: a bigger click target is right with a mouse
+   too, and this changes no spacing. */
+
+.source-card__name a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* Long-form intros are two or three separate thoughts, not one block. */
+.doc__body > .lede + .lede { margin-top: var(--space-4); }
+.doc__body > .rule { margin-top: var(--space-8); }
+.doc__body > .rule + .prose { margin-top: var(--space-5); }
+.doc__body > .cluster { margin-top: var(--space-5); }
+
+/* A Column entry is a single reading column with nothing beside it — the
+   policy pages fill that space with a contents rail, an entry has nothing
+   to put there. Left-aligned it stranded half the page, so the measure is
+   centred. The page head above stays full-bleed and left-aligned, which is
+   the usual editorial arrangement. */
+
+.article { margin-inline: auto; }
+
+/* The closing rule and its call to action need air, or they read as the
+   last paragraph of the piece rather than as the end of it. */
+.article > .rule { margin-top: var(--space-8); }
+.article > .rule + .prose { margin-top: var(--space-5); }
+.article > .cluster { margin-top: var(--space-5); }

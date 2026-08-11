@@ -6,10 +6,16 @@ import { ChassisPage } from './routes/chassis.js';
 import { RequestPage, handleRequestSubmit } from './routes/request.js';
 import { HowItWorksPage } from './routes/how-it-works.js';
 import { ContactPage } from './routes/contact.js';
+import { AboutPage } from './routes/about.js';
+import { PrivacyPage, TermsPage, ShippingPage } from './routes/legal.js';
+import { ColumnPage, ColumnEntryPage } from './routes/column.js';
+import { FindsPage, FindPage } from './routes/finds.js';
 import { NotFoundPage } from './routes/not-found.js';
 import { sitemapXml, robotsTxt } from './routes/sitemap.js';
 import { getChassis } from './data/chassis.js';
 import { getBrand } from './data/brands.js';
+import { getEntry, LEGACY_COLUMN_PATHS } from './content/column.js';
+import { getFind, hasPublishedFinds } from './data/finds.js';
 import { resetIds } from './components/ui.js';
 import { setHost, isProductionHost } from './request-context.js';
 
@@ -34,6 +40,13 @@ const LEGACY_REDIRECTS = new Map([
   ['/order', '/request'],
   ['/parts', '/what-we-source'],
   ['/shop', '/what-we-source'],
+  // The previous site's paths. /import-a-car has no equivalent here — this
+  // site is parts only — so it lands on what we do source rather than on a
+  // 404 that says nothing.
+  ['/parts-request', '/request'],
+  ['/import-a-car', '/what-we-source'],
+  // Writing moved from /blog to /column, keeping each entry's own URL.
+  ...LEGACY_COLUMN_PATHS,
 ]);
 
 /**
@@ -89,6 +102,23 @@ export async function route(request, env = {}) {
       return htmlResponse(HowItWorksPage());
     case '/contact':
       return htmlResponse(ContactPage());
+    case '/about':
+      return htmlResponse(AboutPage());
+    case '/privacy':
+      return htmlResponse(PrivacyPage());
+    case '/terms':
+      return htmlResponse(TermsPage());
+    case '/shipping-and-returns':
+      return htmlResponse(ShippingPage());
+    case '/column':
+      return htmlResponse(ColumnPage());
+    // Recent finds only exists once a real entry is published. Until then the
+    // route 404s rather than serving an empty shell that promises proof and
+    // shows none.
+    case '/finds':
+      return hasPublishedFinds()
+        ? htmlResponse(FindsPage())
+        : htmlResponse(NotFoundPage({ path }), 404);
     case '/sitemap.xml':
       return new Response(sitemapXml(), {
         headers: { 'content-type': 'application/xml; charset=utf-8' },
@@ -99,6 +129,22 @@ export async function route(request, env = {}) {
       });
     default:
       break;
+  }
+
+  // /column/{slug}
+  const entryMatch = /^\/column\/([a-z0-9-]+)$/.exec(path);
+  if (entryMatch) {
+    const entry = getEntry(entryMatch[1]);
+    return entry
+      ? htmlResponse(ColumnEntryPage({ entry }))
+      : htmlResponse(NotFoundPage({ path }), 404);
+  }
+
+  // /finds/{slug}
+  const findMatch = /^\/finds\/([a-z0-9-]+)$/.exec(path);
+  if (findMatch) {
+    const find = getFind(findMatch[1]);
+    return find ? htmlResponse(FindPage({ find })) : htmlResponse(NotFoundPage({ path }), 404);
   }
 
   // /brands/{slug}

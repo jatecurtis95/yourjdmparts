@@ -1,6 +1,7 @@
 import { html, raw, render, attrs } from './html.js';
-import { SITE, TRADE, NAV } from './config.js';
+import { SITE, TRADE, NAV, LEGAL, hasLegalIdentity } from './config.js';
 import { isProductionHost } from './request-context.js';
+import { hasPublishedFinds } from './data/finds.js';
 import { Logo } from './components/logo.js';
 import { Icon } from './components/icon.js';
 import { Pattern } from './components/ui.js';
@@ -81,8 +82,16 @@ function Footer() {
         <div class="footer-col">
           <h2 class="footer-col__title">Company</h2>
           <ul>
+            <li><a href="/about">About</a></li>
             <li><a href="/how-it-works">How it works</a></li>
+            <li><a href="/column">The Column</a></li>
+            ${hasPublishedFinds() ? html`<li><a href="/finds">Recent finds</a></li>` : ''}
             <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2 class="footer-col__title">Reach us</h2>
+          <ul>
             <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
             <li><a href="tel:${SITE.phoneIntl}">${SITE.phone}</a></li>
             <li>
@@ -91,10 +100,21 @@ function Footer() {
               </a>
             </li>
           </ul>
+          <h2 class="footer-col__title" style="margin-top: var(--space-5)">Legal</h2>
+          <ul>
+            <li><a href="/privacy">Privacy</a></li>
+            <li><a href="/terms">Terms</a></li>
+            <li><a href="/shipping-and-returns">Shipping and returns</a></li>
+          </ul>
         </div>
       </div>
       <div class="site-footer__base">
-        <span>© ${year} ${SITE.name} · ${SITE.suburb}, ${SITE.city} ${SITE.state}</span>
+        <span>
+          © ${year} ${hasLegalIdentity() ? LEGAL.entityName : SITE.name}${hasLegalIdentity()
+            ? html` · ABN ${LEGAL.abn}`
+            : ''}
+          · ${SITE.location}
+        </span>
         <span>Japanese domestic market parts, sourced to order and shipped Australia-wide.</span>
       </div>
     </div>

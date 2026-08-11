@@ -143,12 +143,13 @@ and there are tests that fail if any appear.
 Two things the brief and the previous live site disagreed on, decided
 2026-08-10:
 
-- **The name is Your JDM Parts.** The site it replaced was JDM Bridge, and
-  the contact email (`info@jdmbridge.com.au`) and Instagram
-  (`@jdmbridge_au`) are still on that name. They are used as-is because
-  they work; swapping them is a one-line change in `src/config.js`, which
-  carries a comment saying so.
-- **Parts only.** JDM Bridge also did vehicle imports, auction sourcing,
-  compliance and registration. None of that is claimed here, and the
-  "sister company to JDM Connect" line the brief asked for has been removed
-  from the footer, How it works and the enquiry form.
+- **The name is Your JDM Parts.** The previous trading name is retired.
+  Contact details moved onto the brand's own domain on 2026-08-11: the old
+  address was on a domain that no longer resolves at all, so mail sent to it
+  had been bouncing. `yourjdmparts.com` has live Microsoft 365 mail routing.
+  `test/identity.test.mjs` fails the build if the old name reappears anywhere.
+- **Parts only.** The previous business also did vehicle imports, auction
+  sourcing, compliance and registration. None of that is claimed here, and the
+  "sister company" line the brief asked for has been removed from the footer,
+  How it works and the enquiry form. One migrated Column entry was held back
+  for the same reason — see `src/content/column.js`.

@@ -9,6 +9,7 @@
     "deploy": "wrangler deploy",
     "test": "node --test test/*.test.mjs",
     "qa": "node scripts/qa.mjs",
+    "verify": "node scripts/verify.mjs",
     "tail": "wrangler tail"
   },
   "devDependencies": {
