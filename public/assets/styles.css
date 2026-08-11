@@ -1851,3 +1851,32 @@ a.logo { min-height: var(--hit); }
 .article > .rule { margin-top: var(--space-8); }
 .article > .rule + .prose { margin-top: var(--space-5); }
 .article > .cluster { margin-top: var(--space-5); }
+
+/* ══ Request reference ════════════════════════════════════════
+   A quotable code on the success page. Set in the mono face so it
+   survives being read down a phone or copied into an email. */
+
+.reference {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--hairline-gold);
+  border-radius: var(--radius-md);
+}
+
+.reference__label {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: var(--size-small);
+  text-transform: uppercase;
+  letter-spacing: var(--track-label);
+  color: var(--text-muted);
+}
+
+.reference__code {
+  font-size: var(--size-d3);
+  color: var(--text-accent);
+  letter-spacing: 0.08em;
+}

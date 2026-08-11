@@ -373,9 +373,12 @@
     var list = partsList();
     if (list) updateAddButton(list.querySelectorAll('[data-part-block]').length);
 
-    // The server renders the success view; this is the only place that
-    // knows the request actually landed rather than merely being sent.
+    // The server renders the outcome, and it is the only thing that knows
+    // whether the request actually reached a delivery route. A submission
+    // that went nowhere must not be counted as a success — that number is
+    // the one someone will use to decide the form is working.
     if (document.querySelector('[data-quote-success]')) track('quote_form_success', {});
+    if (document.querySelector('[data-quote-failed]')) track('quote_form_undelivered', {});
   }
 
   if (document.readyState === 'loading') {

@@ -10,6 +10,7 @@ import { AboutPage } from './routes/about.js';
 import { PrivacyPage, TermsPage, ShippingPage } from './routes/legal.js';
 import { ColumnPage, ColumnEntryPage } from './routes/column.js';
 import { FindsPage, FindPage } from './routes/finds.js';
+import { requestsExport } from './routes/admin.js';
 import { NotFoundPage } from './routes/not-found.js';
 import { sitemapXml, robotsTxt } from './routes/sitemap.js';
 import { getChassis } from './data/chassis.js';
@@ -71,6 +72,13 @@ export async function route(request, env = {}) {
 
   if (request.method !== 'GET' && request.method !== 'HEAD') {
     return new Response('Method not allowed', { status: 405 });
+  }
+
+  // Returns null when ADMIN_TOKEN is unset, so the route falls through to
+  // the 404 and an unconfigured deployment gives nothing away.
+  if (path === '/admin/requests.csv') {
+    const csv = await requestsExport(request, env);
+    if (csv) return csv;
   }
 
   const legacy = LEGACY_REDIRECTS.get(path);

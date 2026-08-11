@@ -46,11 +46,20 @@ publishing path.
 
 The account ID is not a secret and is set directly in `deploy.yml`.
 
-One optional Worker secret:
+Optional Worker variables:
 
-- `REQUEST_WEBHOOK` — where part requests are delivered. Without it,
-  submissions are validated and logged (visible in `wrangler tail` or the
-  dashboard Logs) rather than lost.
+- `REQUEST_WEBHOOK` — optional. A URL that part requests are POSTed to as
+  JSON. Independent of the D1 store: requests are recorded either way, and a
+  webhook that breaks costs a notification rather than a customer.
+- `ADMIN_TOKEN` — optional. Set it to open `/admin/requests.csv`. Unset, that
+  route is a 404 rather than a 401, so an unconfigured deployment does not
+  advertise that it exists.
+
+Bindings:
+
+- `REQUESTS_DB` — D1 (`yourjdmparts-requests`). Every validated request is
+  written here on arrival. This is what makes a submission durable without any
+  secret being set. Schema in `migrations/0001_requests.sql`.
 
 ## Before the domain points here
 
@@ -58,8 +67,9 @@ One optional Worker secret:
    `logo: null`, so the cards set the brand name in the site's own condensed
    face. Drop files in `public/assets/brands/` and set the path — see that
    directory's README for the format.
-2. **Set `REQUEST_WEBHOOK`** so part requests reach a person rather than the
-   log. Until it is set, a submitted form notifies nobody.
+2. **Set `REQUEST_WEBHOOK`** so part requests notify you. They are already
+   stored in D1 the moment they arrive, so nothing is lost without it — but
+   D1 has to be checked, whereas a webhook comes to you.
 3. **Attach the domain to the Worker.** It is on Cloudflare nameservers but
    has no A record, so the apex serves nothing today.
 4. **Fill in `LEGAL` in `src/config.js`** — registered entity name and ABN.
@@ -75,8 +85,9 @@ One optional Worker secret:
 ```
 npm install
 npm run dev        # wrangler dev on :8787
-npm test           # 71 regression tests, no browser needed
-npm run qa         # boots a Worker, checks 14 routes × 6 widths in Chromium
+npm test           # 137 regression tests, no browser needed
+npm run qa         # boots a Worker, checks 23 routes × 6 widths in Chromium
+npm run verify     # links, touch targets, keyboard, the form with and without JS
 ```
 
 ## Layout
@@ -90,15 +101,20 @@ src/
   config.js            site details, trade strip, hero media, nav
   components/          logo, icon, ui primitives, cards, blocks
   routes/              one file per page
-  data/                catalogue (part types), brands, chassis, form options
+  content/             policy text and Column entries, kept as data
+  data/                catalogue (part types), brands, chassis, finds, form options
+  delivery.js          getting a submitted request to a person
 public/assets/
   tokens.css           THE source of truth for colour, type, space, motion
   styles.css           everything else; references only var()
   fonts.css            self-hosted @font-face
   app.js               progressive enhancement only
   brands/              supplier logos go here (see its README)
+migrations/            D1 schema
+docs/                  SETUP.md (what only the owner can do), OWNER-REVIEW.md
 test/                  node --test, no browser
 scripts/qa.mjs         browser checks (console errors, horizontal overflow)
+scripts/verify.mjs     launch checks (links, targets, keyboard, the real form)
 ```
 
 ## Pages
@@ -110,11 +126,18 @@ scripts/qa.mjs         browser checks (console errors, horizontal overflow)
 | Brands | `/brands`, `/brands/{slug}` |
 | Chassis landing pages | `/{CHASSIS}` — the SEO surface |
 | Request a part | `/request` — one car, up to eight parts |
-| How it works | `/how-it-works` |
+| How it works | `/how-it-works` — includes the payment stages |
+| About | `/about` |
+| The Column | `/column`, `/column/{slug}` |
+| Recent finds | `/finds`, `/finds/{slug}` — 404 until a real case study is published |
+| Privacy, Terms | `/privacy`, `/terms` |
+| Shipping and returns | `/shipping-and-returns` |
+| Requests export | `/admin/requests.csv` — 404 unless `ADMIN_TOKEN` is set |
 
 `/catalogue`, `/order`, `/shop` and `/part/{slug}` are permanent redirects
-from when the site was modelled as a stock-holding shop. Nothing that was
-ever linked is allowed to 404.
+from when the site was modelled as a stock-holding shop. `/blog/*`,
+`/logbook`, `/parts-request` and `/import-a-car` redirect from the previous
+site. Nothing that was ever linked is allowed to 404.
 
 ## The rules this site holds itself to
 

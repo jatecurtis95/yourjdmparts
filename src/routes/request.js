@@ -1,9 +1,10 @@
-import { html, render } from '../html.js';
+import { html, raw, render } from '../html.js';
 import { Page } from '../layout.js';
 import { SITE, TRADE } from '../config.js';
 import { Button, Input, Select, Checkbox, Pattern, Card } from '../components/ui.js';
 import { Breadcrumb } from '../components/blocks.js';
 import { Icon } from '../components/icon.js';
+import { deliverRequest, newReference } from '../delivery.js';
 import { chassisCodes } from '../data/chassis.js';
 import { getPartType, PART_TYPES } from '../data/catalogue.js';
 import { getBrand, BRANDS } from '../data/brands.js';
@@ -372,7 +373,8 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
 
 /**
  * @param {{url?: URL, values?: object, errors?: object, parts?: Array<object>,
- *   partErrors?: Array<object>, submitted?: boolean}} [props]
+ *   partErrors?: Array<object>, submitted?: boolean, reference?: string|null,
+ *   delivered?: boolean}} [props]
  */
 export function RequestPage({
   url = null,
@@ -381,6 +383,8 @@ export function RequestPage({
   parts = null,
   partErrors = [],
   submitted = false,
+  reference = null,
+  delivered = true,
 } = {}) {
   const params = url?.searchParams;
   const seeded = { ...values };
@@ -423,27 +427,64 @@ export function RequestPage({
     </section>
 
     ${submitted
-      ? html`<div class="container section" data-quote-success>
-          ${Card({
-            children: html`<div class="stack">
-              <p class="eyebrow">Received</p>
-              <h2 class="display-1">We have your request</h2>
-              <p class="prose">
-                One of us will read it properly rather than run it through a template. You will
-                have a landed A$ price, or an honest answer that we cannot find it, within
-                ${TRADE.quoteDays} business days.
-              </p>
-              <p class="prose">
-                If you have photographs that did not attach, send them to
-                <a class="accent" href="mailto:${SITE.email}">${SITE.email}</a> and we will put
-                them with your request.
-              </p>
-              <div class="cluster">
-                ${Button({ label: 'What we source', href: '/what-we-source', variant: 'bone' })}
-                ${Button({ label: 'Send another request', href: '/request', variant: 'outline' })}
-              </div>
-            </div>`,
-          })}
+      ? html`<div
+          class="container section"
+          ${delivered ? raw('data-quote-success') : raw('data-quote-failed')}
+        >
+          ${delivered
+            ? Card({
+                children: html`<div class="stack">
+                  <p class="eyebrow">Received</p>
+                  <h2 class="display-1">We have your request</h2>
+                  ${reference
+                    ? html`<p class="reference">
+                        <span class="reference__label">Your reference</span>
+                        <span class="reference__code mono">${reference}</span>
+                      </p>`
+                    : ''}
+                  <p class="prose">
+                    One of us will read it properly rather than run it through a template. You
+                    will have a landed A$ price, or an honest answer that we cannot find it,
+                    within ${TRADE.quoteDays} business days.
+                  </p>
+                  <p class="prose">
+                    If you have photographs that did not attach, send them to
+                    <a class="accent" href="mailto:${SITE.email}">${SITE.email}</a>${reference
+                      ? html` quoting ${reference}`
+                      : ''}
+                    and we will put them with your request.
+                  </p>
+                  <div class="cluster">
+                    ${Button({ label: 'What we source', href: '/what-we-source', variant: 'bone' })}
+                    ${Button({ label: 'Send another request', href: '/request', variant: 'outline' })}
+                  </div>
+                </div>`,
+              })
+            : // Both delivery routes failed. Saying "we have your request"
+              // here would be a lie that costs somebody their part, so the
+              // page says what actually happened and hands over a channel
+              // that does not depend on us.
+              Card({
+                children: html`<div class="stack">
+                  <p class="eyebrow">Not sent</p>
+                  <h2 class="display-1">That did not reach us</h2>
+                  <p class="prose">
+                    Something on our end failed, and we would rather tell you than let you wait
+                    on a quote that is never coming. Nothing you typed has been lost from this
+                    page — use the back button and it will still be there.
+                  </p>
+                  <p class="prose">
+                    The fastest way through is to ring
+                    <a class="accent" href="tel:${SITE.phoneIntl}">${SITE.phone}</a> or email
+                    <a class="accent" href="mailto:${SITE.email}">${SITE.email}</a>. Tell us the
+                    car and the part and we will take it from there.
+                  </p>
+                  <div class="cluster">
+                    ${Button({ label: `Call ${SITE.phone}`, href: `tel:${SITE.phoneIntl}`, variant: 'sunrise' })}
+                    ${Button({ label: 'Email us', href: `mailto:${SITE.email}`, variant: 'outline' })}
+                  </div>
+                </div>`,
+              })}
         </div>`
       : html`<div class="container section">
           ${hasErrors
@@ -552,6 +593,7 @@ export async function handleRequestSubmit(request, env = {}) {
   }
 
   const payload = {
+    reference: newReference(),
     receivedAt: new Date().toISOString(),
     vehicle: {
       make: data.make,
@@ -595,22 +637,16 @@ export async function handleRequestSubmit(request, env = {}) {
     },
   };
 
-  // Single integration point. Set REQUEST_WEBHOOK to wherever these should
-  // land — an inbox relay, a CRM, a Worker of your own. Without it the
-  // request is logged so it is visible in `wrangler tail`.
-  if (env.REQUEST_WEBHOOK) {
-    try {
-      await fetch(env.REQUEST_WEBHOOK, {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-    } catch (error) {
-      console.error('Request webhook failed', error, JSON.stringify(payload));
-    }
-  } else {
-    console.log('Part request', JSON.stringify(payload));
-  }
+  const delivery = await deliverRequest(payload, env);
 
-  return new Response(render(RequestPage({ submitted: true })), { headers: HTML_HEADERS });
+  return new Response(
+    render(
+      RequestPage({
+        submitted: true,
+        reference: payload.reference,
+        delivered: delivery.reachedSomeone,
+      }),
+    ),
+    { headers: HTML_HEADERS },
+  );
 }

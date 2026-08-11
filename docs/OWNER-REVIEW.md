@@ -140,20 +140,21 @@ site says the quote states the terms, which is true and is the honest floor.
 
 ---
 
-## 6. Still not connected: the request form goes nowhere
+## 6. The request form — now stores, still does not notify
 
-**This is the most urgent item on the page.**
+**Fixed:** requests are written to a D1 database (`yourjdmparts-requests`) the
+moment they validate, so a submission no longer depends on a webhook existing.
+Nothing is lost. Read them in the dashboard: D1 → `yourjdmparts-requests` →
+Console. `docs/SETUP.md` has the queries.
 
-`REQUEST_WEBHOOK` is unset in production. Validated submissions are written to
-the Worker log and **nothing else** — no email, no notification. A customer who
-fills in the form gets a "we have your request" page, and nobody finds out.
+The customer now gets a reference code, and if **both** delivery routes fail
+the success page says so and hands over the phone number rather than thanking
+them for something that went nowhere.
 
-Fix it in the Cloudflare dashboard: Workers → `yourjdmparts` → Settings →
-Variables and Secrets → add `REQUEST_WEBHOOK` pointing at an inbox relay, a
-form service, or a Zap. One secret, one integration point, no redeploy needed.
-
-Until that is set, the phone number is the only channel that actually reaches
-anyone.
+**Still worth doing:** D1 does not tap you on the shoulder. Setting
+`REQUEST_WEBHOOK` (Workers → `yourjdmparts` → Settings → Variables and
+Secrets) to a URL that emails you turns storage into notification. Until then,
+check the console daily.
 
 ---
 

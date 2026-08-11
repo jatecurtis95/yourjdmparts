@@ -11,6 +11,15 @@ compatibility_date = "2026-08-01"
 directory = "./public"
 binding = "ASSETS"
 
+# Part requests are written here the moment they validate, so a submission
+# is never dependent on a webhook being configured. Readable in the
+# dashboard: D1 -> yourjdmparts-requests -> Console. Created in Oceania so
+# the write is close to Perth.
+[[d1_databases]]
+binding = "REQUESTS_DB"
+database_name = "yourjdmparts-requests"
+database_id = "7d5f1625-ba67-40e5-8d36-627a2c2b2fab"
+
 [observability]
 enabled = true
 

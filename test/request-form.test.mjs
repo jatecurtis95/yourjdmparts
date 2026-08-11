@@ -14,13 +14,13 @@ const VEHICLE = {
 
 const ONE_PART = [{ description: 'Right-hand front guard, original paint preferred.' }];
 
-const submit = (fields, parts = ONE_PART) => {
+const submit = (fields, parts = ONE_PART, env = {}) => {
   const body = new FormData();
   for (const [key, value] of Object.entries(fields)) body.append(key, value);
   parts.forEach((part, i) => {
     for (const [key, value] of Object.entries(part)) body.append(`parts[${i}][${key}]`, value);
   });
-  return handleRequestSubmit(new Request(ORIGIN + '/request', { method: 'POST', body }));
+  return handleRequestSubmit(new Request(ORIGIN + '/request', { method: 'POST', body }), env);
 };
 
 /* ── Validation ─────────────────────────────────────────────── */
@@ -249,7 +249,11 @@ test('empty part blocks are dropped rather than sent as blanks', async () => {
 /* ── Submission ─────────────────────────────────────────────── */
 
 test('a valid submission is accepted and confirmed', async () => {
-  const response = await submit(VEHICLE);
+  // Confirmation is now conditional on the request actually reaching a
+  // delivery route, so this binds one. The undelivered case is its own
+  // test in delivery.test.mjs, and it must NOT say "we have your request".
+  const store = { prepare: () => ({ bind: () => ({ run: async () => ({ success: true }) }) }) };
+  const response = await submit(VEHICLE, ONE_PART, { REQUESTS_DB: store });
   assert.equal(response.status, 200);
   assert.match(await response.text(), /We have your request/);
 });
