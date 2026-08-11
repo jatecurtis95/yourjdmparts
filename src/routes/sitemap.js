@@ -30,6 +30,13 @@ export function sitemapXml() {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }
 
-export function robotsTxt() {
+/**
+ * @param {{allow?: boolean}} [options] allow=false on any host that is not
+ *   the production domain, so previews are never crawled.
+ */
+export function robotsTxt({ allow = true } = {}) {
+  if (!allow) {
+    return `# Not the production domain. Nothing here should be indexed.\nUser-agent: *\nDisallow: /\n`;
+  }
   return `User-agent: *\nAllow: /\n\nSitemap: ${SITE.origin}/sitemap.xml\n`;
 }

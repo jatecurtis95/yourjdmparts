@@ -5,6 +5,8 @@ export const SITE = {
   domain: 'yourjdmparts.com',
   origin: 'https://yourjdmparts.com',
   tagline: 'Genuine parts, inspected and landed',
+  // The homepage title. A bare brand name tells a searcher nothing.
+  tagTitle: 'JDM Parts Sourced from Japan, Landed in Australia | Your JDM Parts',
   description:
     'We source genuine and aftermarket Japanese domestic market car parts to order — found in Japan, inspected, and quoted in landed Australian dollars with duty and GST included.',
   // Real details, taken from the live site. Note the email and the social

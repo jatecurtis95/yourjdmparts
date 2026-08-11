@@ -37,8 +37,8 @@ const MAX_PARTS = 8;
 
 /* ── Validation ─────────────────────────────────────────────── */
 
-const REQUIRED_VEHICLE = ['make', 'model', 'buildDate'];
-const REQUIRED_CONTACT = ['name', 'email', 'phone'];
+const REQUIRED_VEHICLE = ['make', 'model'];
+const REQUIRED_CONTACT = ['name'];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const BUILD_DATE_RE = /^\d{4}-\d{2}$/;
@@ -55,7 +55,15 @@ export function validateRequest(data, parts = []) {
     if (!String(data[field] ?? '').trim()) errors[field] = 'This one we do need.';
   }
 
-  if (data.email && !EMAIL_RE.test(data.email.trim())) {
+  // One way to reach you is enough. Demanding both turns people away, and
+  // plenty of buyers will give a phone number but not an email, or vice versa.
+  const hasEmail = Boolean(String(data.email ?? '').trim());
+  const hasPhone = Boolean(String(data.phone ?? '').trim());
+  if (!hasEmail && !hasPhone) {
+    errors.email = 'Give us one way to reach you — email or phone.';
+  }
+
+  if (hasEmail && !EMAIL_RE.test(data.email.trim())) {
     errors.email = 'That email address does not look right.';
   }
 
@@ -198,8 +206,11 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
     data-request-form
     data-max-parts="${MAX_PARTS}"
   >
-    <!-- Spam trap. Real people never see it, so anything in it is a bot. -->
-    <div class="visually-hidden" aria-hidden="true">
+    <!-- Spam trap. Real people never see it, so anything in it is a bot.
+         inert as well as aria-hidden: aria-hidden alone leaves the input
+         programmatically focusable, which is a focusable element inside a
+         hidden subtree. Bots parse the HTML and ignore both. -->
+    <div class="visually-hidden" aria-hidden="true" inert>
       <label for="company-website">Leave this field empty</label>
       <input id="company-website" type="text" name="companyWebsite" tabindex="-1" autocomplete="off" />
     </div>
@@ -234,7 +245,7 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
           name: 'buildDate',
           label: 'Build month and year',
           type: 'month',
-          required: true,
+          required: false,
           value: v('buildDate'),
           error: e('buildDate'),
           hint: 'On the build plate. Several of these cars changed parts mid-year.',
@@ -312,8 +323,8 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
       <div class="form-grid">
         ${Input({ name: 'name', label: 'Full name', required: true, autocomplete: 'name', value: v('name'), error: e('name') })}
         ${Input({ name: 'business', label: 'Workshop or business', required: false, autocomplete: 'organization', value: v('business') })}
-        ${Input({ name: 'email', label: 'Email', type: 'email', required: true, autocomplete: 'email', value: v('email'), error: e('email') })}
-        ${Input({ name: 'phone', label: 'Phone', type: 'tel', required: true, autocomplete: 'tel', inputmode: 'tel', value: v('phone'), error: e('phone') })}
+        ${Input({ name: 'email', label: 'Email', type: 'email', required: false, autocomplete: 'email', value: v('email'), error: e('email'), hint: 'Email or phone — whichever you prefer. One is enough.' })}
+        ${Input({ name: 'phone', label: 'Phone', type: 'tel', required: false, autocomplete: 'tel', inputmode: 'tel', value: v('phone'), error: e('phone') })}
         ${Select({ name: 'state', label: 'State or territory', required: false, placeholder: 'Select', options: AU_STATES, value: v('state') })}
         ${Input({ name: 'postcode', label: 'Postcode', required: false, inputmode: 'numeric', maxlength: 4, autocomplete: 'postal-code', value: v('postcode'), error: e('postcode'), hint: 'So we can quote freight with the parts.' })}
         ${Select({ name: 'heardFrom', label: 'How you found us', required: false, placeholder: 'Select', options: HEARD_FROM, value: v('heardFrom') })}
@@ -329,7 +340,7 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
     </fieldset>
 
     <div class="cluster">
-      ${Button({ label: 'Send the request', variant: 'bone', size: 'lg', type: 'submit' })}
+      ${Button({ label: 'Request my free landed quote', variant: 'bone', size: 'lg', type: 'submit' })}
       <p class="muted" style="font-size: var(--size-small)">
         Answer within ${TRADE.quoteDays} business days. Nothing is charged to quote.
       </p>

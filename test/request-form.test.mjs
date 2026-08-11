@@ -33,9 +33,27 @@ test('a complete request validates', () => {
 
 test('the fields we cannot work without are required', () => {
   const { errors } = validateRequest({}, [{}]);
-  for (const field of ['make', 'model', 'buildDate', 'name', 'email', 'phone']) {
+  for (const field of ['make', 'model', 'name']) {
     assert.ok(errors[field], `${field} should be required`);
   }
+});
+
+test('one way to reach you is enough', () => {
+  const base = { make: 'Toyota', model: 'Supra', name: 'Sam Rivera' };
+  // Neither is a problem.
+  assert.ok(validateRequest(base, ONE_PART).errors.email);
+  // Either one on its own is fine.
+  assert.ok(!validateRequest({ ...base, email: 'sam@example.com' }, ONE_PART).errors.email);
+  assert.ok(!validateRequest({ ...base, phone: '0400 000 000' }, ONE_PART).errors.email);
+});
+
+test('the build month is asked for but not demanded', () => {
+  const base = { make: 'Toyota', model: 'Supra', name: 'Sam Rivera', email: 'sam@example.com' };
+  // Plenty of buyers do not know it, and refusing the enquiry over it is worse
+  // than quoting with a caveat.
+  assert.deepEqual(validateRequest(base, ONE_PART).errors, {});
+  // It is still validated when given.
+  assert.ok(validateRequest({ ...base, buildDate: '1997-13' }, ONE_PART).errors.buildDate);
 });
 
 test('optional identification fields stay optional', () => {

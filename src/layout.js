@@ -1,5 +1,6 @@
 import { html, raw, render, attrs } from './html.js';
 import { SITE, TRADE, NAV } from './config.js';
+import { isProductionHost } from './request-context.js';
 import { Logo } from './components/logo.js';
 import { Icon } from './components/icon.js';
 import { Pattern } from './components/ui.js';
@@ -33,6 +34,7 @@ function Header({ current = '' } = {}) {
               >${item.label}</a
             >`,
         )}
+        <a class="btn btn--bone nav__cta-mobile" href="/request">Get a free quote</a>
       </nav>
       <div class="nav-actions">
         <a class="icon-btn nav-toggle" href="#primary-nav" data-nav-toggle aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
@@ -121,8 +123,14 @@ export function Page({
   structuredData = null,
   noindex = false,
 }) {
-  const fullTitle = title === SITE.name ? title : `${title} — ${SITE.name}`;
+  const fullTitle = title === SITE.name ? SITE.tagTitle : `${title} — ${SITE.name}`;
   const canonical = SITE.origin + path;
+
+  // Every page canonicalises to the production domain. On any other host —
+  // a workers.dev preview, a staging domain — that tells a crawler the real
+  // page lives somewhere that currently serves a different site. So those
+  // hosts are noindexed outright rather than left to be misread.
+  const hideFromCrawlers = noindex || !isProductionHost();
 
   const jsonLd = structuredData
     ? [].concat(structuredData).map(
@@ -141,15 +149,18 @@ export function Page({
     <title>${fullTitle}</title>
     <meta name="description" content="${description}" />
     <link rel="canonical" href="${canonical}" />
-    ${noindex ? html`<meta name="robots" content="noindex" />` : ''}
+    ${hideFromCrawlers ? html`<meta name="robots" content="noindex, nofollow" />` : ''}
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="${SITE.name}" />
     <meta property="og:title" content="${fullTitle}" />
     <meta property="og:description" content="${description}" />
     <meta property="og:url" content="${canonical}" />
-    <meta property="og:image" content="${SITE.origin}/assets/logo/torii.svg" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="${SITE.origin}/assets/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_AU" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" href="/assets/logo/torii.svg" type="image/svg+xml" />
     <link rel="preload" href="/assets/fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin />

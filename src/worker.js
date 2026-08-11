@@ -11,6 +11,7 @@ import { sitemapXml, robotsTxt } from './routes/sitemap.js';
 import { getChassis } from './data/chassis.js';
 import { getBrand } from './data/brands.js';
 import { resetIds } from './components/ui.js';
+import { setHost, isProductionHost } from './request-context.js';
 
 const HTML_HEADERS = {
   'content-type': 'text/html; charset=utf-8',
@@ -48,6 +49,7 @@ export async function route(request, env = {}) {
   const path = url.pathname.replace(/\/+$/, '') || '/';
 
   resetIds();
+  setHost(url);
 
   if (request.method === 'POST') {
     if (path === '/request') return handleRequestSubmit(request, env);
@@ -92,7 +94,7 @@ export async function route(request, env = {}) {
         headers: { 'content-type': 'application/xml; charset=utf-8' },
       });
     case '/robots.txt':
-      return new Response(robotsTxt(), {
+      return new Response(robotsTxt({ allow: isProductionHost() }), {
         headers: { 'content-type': 'text/plain; charset=utf-8' },
       });
     default:

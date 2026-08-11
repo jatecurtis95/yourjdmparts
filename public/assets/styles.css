@@ -326,7 +326,10 @@ i, em, cite, address, dfn, var { font-style: normal; }
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  min-height: 32px;
+  /* 44px on touch, where these are the main way into a chassis or a
+     part type. Kept tighter on pointer devices so dense clusters of
+     chassis codes do not turn into a wall of pills. */
+  min-height: 34px;
   padding: var(--space-1) var(--space-3);
   border: 1px solid var(--hairline);
   border-radius: var(--radius-pill);
@@ -1439,4 +1442,23 @@ a.tag:hover, button.tag:hover { color: var(--text-primary); border-color: var(--
 
 @media (max-width: 900px) {
   .split-layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ── Touch targets ──────────────────────────────────────────────
+   Anything that is a primary route in on a phone gets the full 44px. */
+
+@media (hover: none), (max-width: 900px) {
+  .tag { min-height: var(--hit); padding-inline: var(--space-4); }
+  .facet__link { min-height: var(--hit); }
+  .footer-col a { min-height: var(--hit); }
+}
+
+/* ── Mobile menu quote action ───────────────────────────────────
+   The header button is hidden on the narrowest screens, so the menu
+   has to carry the one action the whole site exists for. */
+
+.nav__cta-mobile { display: none; }
+
+@media (max-width: 900px) {
+  .nav__cta-mobile { display: inline-flex; margin-top: var(--space-4); }
 }
