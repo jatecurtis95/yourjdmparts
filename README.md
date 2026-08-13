@@ -70,8 +70,10 @@ Bindings:
 2. **Set `REQUEST_WEBHOOK`** so part requests notify you. They are already
    stored in D1 the moment they arrive, so nothing is lost without it — but
    D1 has to be checked, whereas a webhook comes to you.
-3. **Attach the domain to the Worker.** It is on Cloudflare nameservers but
-   has no A record, so the apex serves nothing today.
+3. **Confirm the domain attached.** `yourjdmparts.com` and `www` are declared
+   as custom domains in `wrangler.toml`, so every deploy attaches them and
+   Cloudflare manages the records and certificate. After the first deploy,
+   open the site and check the `noindex` meta tag is gone.
 4. **Fill in `LEGAL` in `src/config.js`** — registered entity name and ABN.
    Both are `null`, and the site prints nothing rather than a placeholder.
 5. Read `docs/OWNER-REVIEW.md` — everything still waiting on real material or

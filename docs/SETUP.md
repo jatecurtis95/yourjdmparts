@@ -81,29 +81,19 @@ waiting on a quote that is never coming.
 
 ---
 
-## 2. Point the domain at the site ⚠️ this is why nothing is indexed
+## 2. Point the domain at the site ✅ now done by every deploy
 
-`yourjdmparts.com` sits on Cloudflare nameservers but has **no A record and no
-`www` record**, so the apex serves nothing at all today. The site itself is
-live and correct at
-`https://yourjdmparts.jate-curtis.workers.dev`.
+`yourjdmparts.com` and `www.yourjdmparts.com` are declared as custom domains
+in `wrangler.toml`, so **every deploy attaches them to the Worker**.
+Cloudflare creates the DNS records itself and issues the certificate; it
+usually takes a few minutes after the deploy finishes. There is nothing to
+click in the dashboard, and re-running the deploy re-asserts the domains if
+a record is ever changed or deleted by hand.
 
-Every page canonicalises to `https://yourjdmparts.com`, and any host that is
-not that domain is deliberately marked `noindex`. So until this is done, none
-of the SEO work counts for anything.
-
-**Do this:**
-
-Cloudflare dashboard → **Workers & Pages** → `yourjdmparts` → **Settings** →
-**Domains & Routes** → **Add** → **Custom domain**.
-
-Add both, one at a time:
-
-- `yourjdmparts.com`
-- `www.yourjdmparts.com`
-
-Cloudflare creates the DNS records itself and issues the certificate. It
-usually takes a few minutes.
+The site is also live at `https://yourjdmparts.jate-curtis.workers.dev`,
+which stays `noindex` — every page canonicalises to
+`https://yourjdmparts.com`, and any host that is not that domain is
+deliberately kept out of search.
 
 **This will not touch your email.** Custom domains add proxied records for web
 traffic only. Your MX record, the SPF record and the `autodiscover` record are
