@@ -2,15 +2,22 @@ name = "yourjdmparts"
 main = "src/worker.js"
 compatibility_date = "2026-08-01"
 
-# The production hostnames, attached as custom domains on every deploy.
-# Custom domains rather than routes: Cloudflare creates the DNS records and
-# the certificate itself, so going live needs no dashboard step. In a
-# non-interactive deploy wrangler also replaces any conflicting DNS record
-# on these names — load-bearing, because www carried a dead record that
-# answered 522 until a deploy overrode it.
+# The production hostnames, attached on every deploy — but not the same way.
+#
+# The apex is a custom domain: Cloudflare created its DNS record and
+# certificate itself on first deploy, so going live needed no dashboard
+# step.
+#
+# www cannot be: it already carries a hand-made DNS record, and the API
+# refuses to replace records a person created (error 100117 — the first
+# deploy failed on exactly this). So www is a zone route instead, which
+# rides that existing proxied record; the Worker answers at the edge and
+# whatever dead origin the record names is never consulted. If that record
+# is ever deleted, www drops off the internet — either recreate it or flip
+# this entry to `custom_domain = true` so Cloudflare manages it properly.
 routes = [
   { pattern = "yourjdmparts.com", custom_domain = true },
-  { pattern = "www.yourjdmparts.com", custom_domain = true }
+  { pattern = "www.yourjdmparts.com/*", zone_name = "yourjdmparts.com" }
 ]
 
 # Declaring routes switches the workers.dev preview host off by default.
