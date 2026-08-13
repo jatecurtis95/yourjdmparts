@@ -2,6 +2,22 @@ name = "yourjdmparts"
 main = "src/worker.js"
 compatibility_date = "2026-08-01"
 
+# The production hostnames, attached as custom domains on every deploy.
+# Custom domains rather than routes: Cloudflare creates the DNS records and
+# the certificate itself, so going live needs no dashboard step. In a
+# non-interactive deploy wrangler also replaces any conflicting DNS record
+# on these names — load-bearing, because www carried a dead record that
+# answered 522 until a deploy overrode it.
+routes = [
+  { pattern = "yourjdmparts.com", custom_domain = true },
+  { pattern = "www.yourjdmparts.com", custom_domain = true }
+]
+
+# Declaring routes switches the workers.dev preview host off by default.
+# Keep it: docs/SETUP.md points at it, QA runs against it, and it already
+# answers every request with a noindex header.
+workers_dev = true
+
 # Static assets (stylesheets, fonts, the pattern, the logo) are served
 # straight from ./public by Cloudflare's asset server, which answers before
 # the Worker is invoked. The ASSETS binding is the fallback path for anything
