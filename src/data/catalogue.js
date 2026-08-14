@@ -20,7 +20,7 @@ export const CATEGORIES = [
     slug: 'drivetrain',
     label: 'Drivetrain',
     blurb:
-      'Gearboxes, differentials, clutches, driveshafts and transfer cases. Grade matters more than model here — a Spec-R and a Spec-S share almost nothing in this category.',
+      'Gearboxes, differentials, clutches, driveshafts and transfer cases. Grade matters more than model here — two grades of the same car can share almost nothing in this category.',
   },
   {
     slug: 'suspension',

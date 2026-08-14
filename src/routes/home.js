@@ -41,8 +41,8 @@ function Hero() {
         <p class="lede">
           We do not hold stock. You tell us the car and the part, we go looking at auction and
           through the dismantlers we buy from in Japan, and we come back with a landed
-          Australian dollar price within ${TRADE.quoteDays} business days. Nothing is charged
-          until you say yes to it.
+          Australian dollar price, usually within ${TRADE.quoteDays} business days. Nothing is
+          charged until you say yes to it.
         </p>
         <div class="hero__actions">
           ${Button({ label: 'Request a part', href: '/request', variant: 'sunrise', size: 'lg' })}
@@ -83,7 +83,7 @@ const STEPS = [
   {
     n: '03',
     title: 'You get a landed price',
-    body: `Within ${TRADE.quoteDays} business days, in Australian dollars, with duty, GST and freight to your postcode already in it. Photographs and an honest condition grade come with it.`,
+    body: `Usually within ${TRADE.quoteDays} business days, in Australian dollars, with duty, GST and freight to your postcode already in it. Photographs and an honest condition grade come with it.`,
   },
   {
     n: '04',
@@ -146,7 +146,7 @@ function StatBand() {
   const stats = [
     { value: formatNumber(CHASSIS.length), label: 'Chassis codes we cover' },
     { value: formatNumber(BRANDS.length), label: 'Brands we source from' },
-    { value: `${TRADE.quoteDays} days`, label: 'To a landed A$ quote' },
+    { value: `${TRADE.quoteDays} days`, label: 'Typical time to a landed A$ quote' },
     { value: 'Nothing', label: 'Charged before you see the price' },
   ];
 
@@ -217,7 +217,7 @@ function ClosingBand() {
         <h2 class="display-1">Tell us the part and we will go and find it</h2>
         <p class="lede">
           One request can cover every part you need for the same car. No deposit, no obligation,
-          and an honest answer within ${TRADE.quoteDays} business days.
+          and an honest answer, usually within ${TRADE.quoteDays} business days.
         </p>
       </div>
       ${Button({ label: 'Request a part', href: '/request', variant: 'sunrise', size: 'lg' })}

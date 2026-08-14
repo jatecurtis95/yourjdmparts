@@ -34,26 +34,25 @@ also required on tax invoices regardless.
 
 ---
 
-## 2. Contact details — changed, needs one confirmation
+## 2. Contact details — email resolved, Instagram still to confirm
 
 | Detail | Before | Now | Status |
 |---|---|---|---|
-| Email | `info@` on the old domain | `info@yourjdmparts.com` | **Confirm the mailbox exists** |
+| Email | `info@` on the old domain | `jate@yourjdmparts.com` | **Verified delivering** by live test, 13 Aug 2026 |
 | Instagram | old handle | `instagram.com/yourjdmparts` | **Confirm the handle exists** |
 | Phone | `0494 070 106` | unchanged | Verified — it is on the previous live site |
 
 The old domain returns **NXDOMAIN** — it does not resolve at all, so every
-email sent to the address the site was publishing has been bouncing. That is
+email sent to the address the site was publishing had been bouncing. That is
 why it was removed rather than kept during a transition.
 
-`yourjdmparts.com` has live Microsoft 365 mail routing
-(`yourjdmparts-com.mail.protection.outlook.com`), so the domain accepts mail.
-What could not be verified from here is whether the **`info@`** mailbox itself
-has been created, and whether the Instagram handle is real. Both were supplied
-rather than tested.
+A live delivery test on 13 Aug 2026 established that `jate@` and `emi@`
+exist and deliver, and that **`info@` does not exist**, so the site now
+publishes `jate@`. To move to `info@`, create the shared mailbox first —
+`docs/SETUP.md` §3 has the steps — then change `email` in `src/config.js`.
 
-**Action:** send a test email to `info@yourjdmparts.com` and open
-`instagram.com/yourjdmparts`. If either is wrong it is a one-line change in
+**Action still open:** open `instagram.com/yourjdmparts` in a private
+window. If it is not your account it is a one-line change in
 `src/config.js`.
 
 ---
@@ -158,17 +157,24 @@ check the console daily.
 
 ---
 
-## 7. The domain is not pointing at this site
+## 7. The domain — resolved 13 August 2026
 
-`yourjdmparts.com` is on Cloudflare nameservers but has **no A record and no
-`www` CNAME**, so the apex currently serves nothing. The Worker is live and
-correct at its `workers.dev` address; the domain simply is not attached to it.
+`yourjdmparts.com` and `www.yourjdmparts.com` are attached to the Worker and
+serving, with no `noindex` on either. Both hostnames are declared in
+`wrangler.toml`, so every deploy re-asserts them; `docs/SETUP.md` §2 records
+how that works and the one caveat about the hand-made `www` DNS record.
 
-Cloudflare dashboard → Workers → `yourjdmparts` → Settings → Domains & Routes →
-add `yourjdmparts.com` and `www.yourjdmparts.com`.
+One follow-up only the owner can do — **Google Search Console**:
 
-Everything on the site canonicalises to `https://yourjdmparts.com`, so until
-this is done the live pages carry `noindex` and none of the SEO work counts.
+- Submit `https://yourjdmparts.com/sitemap.xml` once.
+- Request re-indexing of `/`, `/what-we-source` and the chassis pages.
+
+Google's cached snippets still show the previous business's name against old
+URLs. That residue is Google's copy of the old site, not anything this site
+serves — the repository forbids the old name outright and a test enforces
+it — so a recrawl replaces the stale titles. The old paths (`/parts`,
+`/blog/…`, `/parts-request`) all 301 to their current equivalents, which is
+exactly what tells a crawler to update.
 
 ---
 
@@ -195,3 +201,41 @@ Note that `/privacy` currently states, as a fact, that the site runs no
 analytics and sets no cookies — and `test/privacy.test.mjs` enforces it. Adding
 a tracker means updating that page in the same change. That coupling is on
 purpose.
+
+---
+
+## 9. From the August 2026 external audit — what needs the owner
+
+The audit's code-level findings were fixed the day it arrived: the S15 grade
+wording that had leaked into a generic category blurb, the flat brand strip
+that offered Nismo on the Supra page (brands now carry the makes they serve,
+and a test holds every chassis page to it), and the absolute
+four-business-day promise, which now reads "usually" everywhere so it lines
+up with the shipping page. The request-form simplification it asked for
+already existed — the expert fields sit behind "Add more vehicle details".
+
+What remains is material and decisions, not code:
+
+- **Proof.** Section 3 above. The audit called thin proof the site's biggest
+  weakness, and it is right — six real sourced parts on the homepage beat
+  any copy change. The structure is built and waiting.
+- **Reviews.** Real ones, attached to a car and a part. Google reviews once
+  volume justifies it. Nothing fabricated, ever — a fake review would poison
+  exactly the trust the site is built on.
+- **Emi, visibly.** A photo and any real Japan-side material — searches,
+  inspections, crates. The founder story is the strongest trust asset the
+  business has and it is currently text-only.
+- **WhatsApp.** "Send us a photo" is the lowest-friction way a parts
+  customer can start, and the audit is right that it suits this trade.
+  Needs one fact first: is `0494 070 106` (or another number) actually on
+  WhatsApp Business? Once confirmed, adding the CTA is a small change.
+- **Workshops.** The audit suggests a `/workshops` trade page. The trade
+  strip already speaks to workshops, but a page can only publish terms that
+  exist — response times, invoicing, account arrangements. Decide the terms
+  and the page follows.
+- **Search Console.** Section 7. Submit the sitemap, request recrawls; that
+  is what clears the stale old-brand snippets from Google.
+- **A lawyer, once.** Section 5 lists the exact paragraphs. The audit adds
+  the right framing: do not assume "sourcing agent" removes Australian
+  Consumer Law supplier obligations. One hour of an Australian commercial
+  lawyer's time before scaling paid acquisition.

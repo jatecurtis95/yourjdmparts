@@ -6,7 +6,7 @@ import { Breadcrumb, SpecTable } from '../components/blocks.js';
 import { Icon } from '../components/icon.js';
 import { PartTypeCard, BrandChip } from '../components/cards.js';
 import { CATEGORIES, partTypesIn, commonPartTypes } from '../data/catalogue.js';
-import { FEATURED_BRAND_SLUGS, getBrand } from '../data/brands.js';
+import { brandsFor } from '../data/brands.js';
 
 /**
  * /{CHASSIS} — the SEO surface.
@@ -20,7 +20,9 @@ import { FEATURED_BRAND_SLUGS, getBrand } from '../data/brands.js';
 export function ChassisPage({ chassis }) {
   const title = `${chassis.code} parts sourced from Japan`;
   const common = commonPartTypes();
-  const brands = FEATURED_BRAND_SLUGS.map(getBrand).filter(Boolean).slice(0, 8);
+  // Make-aware: a marque brand must never be offered for another marque's
+  // car, so this cannot be the flat featured list the homepage uses.
+  const brands = brandsFor(chassis.make);
 
   const structuredData = [
     {
@@ -92,8 +94,9 @@ export function ChassisPage({ chassis }) {
               do not.
             </p>
             <p class="prose">
-              We come back with a landed Australian dollar price within ${TRADE.quoteDays}
-              business days, with duty, GST and freight to your postcode already in it.
+              We come back with a landed Australian dollar price, usually within
+              ${TRADE.quoteDays} business days, with duty, GST and freight to your postcode
+              already in it.
             </p>
           </div>
         </div>
@@ -154,7 +157,7 @@ export function ChassisPage({ chassis }) {
       <div class="container">
         <div class="section__head">
           <div>
-            <p class="eyebrow">Marques</p>
+            <p class="eyebrow">Brands</p>
             <h2 class="display-2">Brands we source for ${chassis.code}</h2>
           </div>
           ${Button({ label: 'All brands', href: '/brands', variant: 'outline', icon: 'arrow-right', iconAfter: true })}

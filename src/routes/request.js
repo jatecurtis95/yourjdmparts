@@ -328,8 +328,8 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
     <fieldset class="fieldset" data-step data-step-title="Your details">
       <legend class="fieldset__legend">You</legend>
       <p class="fieldset__intro">
-        We come back with a landed A$ price within ${TRADE.quoteDays} business days. No deposit
-        is taken to quote.
+        We come back with a landed A$ price, usually within ${TRADE.quoteDays} business days.
+        No deposit is taken to quote.
       </p>
       <div class="form-grid">
         ${Input({ name: 'name', label: 'Full name', required: true, autocomplete: 'name', value: v('name'), error: e('name') })}
@@ -363,7 +363,8 @@ function Form({ values = {}, errors = {}, parts = [{}], partErrors = [] }) {
     <div class="cluster" data-submit-row>
       ${Button({ label: 'Request my free landed quote', variant: 'bone', size: 'lg', type: 'submit' })}
       <p class="muted" style="font-size: var(--size-small)">
-        Answer within ${TRADE.quoteDays} business days. Nothing is charged to quote.
+        An answer, usually within ${TRADE.quoteDays} business days. Nothing is charged to
+        quote.
       </p>
     </div>
   </form>`;
@@ -445,7 +446,7 @@ export function RequestPage({
                   <p class="prose">
                     One of us will read it properly rather than run it through a template. You
                     will have a landed A$ price, or an honest answer that we cannot find it,
-                    within ${TRADE.quoteDays} business days.
+                    usually within ${TRADE.quoteDays} business days.
                   </p>
                   <p class="prose">
                     If you have photographs that did not attach, send them to
@@ -514,7 +515,7 @@ export function RequestPage({
                     ${[
                       'We read the request and check it against what we already have coming over from Japan.',
                       'If it is not inbound, we brief our buyer and watch the auctions and dismantlers for it.',
-                      `You get a landed A$ price within ${TRADE.quoteDays} business days, including duty, GST and freight to your postcode.`,
+                      `You get a landed A$ price, usually within ${TRADE.quoteDays} business days, including duty, GST and freight to your postcode.`,
                       'Nothing is charged until you say yes to the price.',
                     ].map(
                       (step, i) =>
@@ -537,7 +538,7 @@ export function RequestPage({
   return Page({
     title: submitted ? 'Request received' : 'Request a part',
     description:
-      'Tell us the chassis number, the build month and the parts you need. We source them from Japan and come back with a landed Australian dollar price within four business days.',
+      'Tell us the chassis number, the build month and the parts you need. We source them from Japan and come back with a landed Australian dollar price, usually within four business days.',
     path: '/request',
     current: '/request',
     noindex: submitted,
