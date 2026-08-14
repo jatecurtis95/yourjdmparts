@@ -10,6 +10,12 @@
  * falls back to the name typeset in the site's own condensed face, which is
  * deliberate: a name set in our type is honest, whereas an approximated
  * logo would not be. Drop a real file in and set the path to upgrade it.
+ *
+ * `makes` limits a brand to the marques it actually serves, taken from the
+ * brand's own blurb. A chassis page must never offer Nismo for a Toyota —
+ * that is exactly the mistake an enthusiast catches in a second — so
+ * brandsFor() filters on it and a test holds the two in agreement. No
+ * `makes` means the brand fits any of these cars.
  */
 
 export const BRAND_CATEGORIES = [
@@ -79,6 +85,7 @@ export const BRANDS = [
     name: 'Tomei',
     category: 'engine',
     logo: null,
+    makes: ['Nissan', 'Mitsubishi'],
     blurb:
       'Camshafts, valvetrain, turbochargers, exhaust manifolds and forged internals, with particularly deep coverage of RB, SR and 4G63 engines.',
   },
@@ -87,6 +94,7 @@ export const BRANDS = [
     name: "Mine's",
     category: 'engine',
     logo: null,
+    makes: ['Nissan'],
     blurb:
       'A small Yokohama tuner best known for its ECUs, exhausts and intercoolers for the RB26 GT-Rs. Low production numbers, so most of what we find is used.',
   },
@@ -95,6 +103,7 @@ export const BRANDS = [
     name: 'Spoon Sports',
     category: 'engine',
     logo: '/assets/brands/spoon-sports.svg',
+    makes: ['Honda'],
     blurb:
       'Honda specialists — engine work, brakes, rigid collars and body reinforcement, mostly for B-series and K-series cars.',
   },
@@ -103,6 +112,7 @@ export const BRANDS = [
     name: 'Top Secret',
     category: 'engine',
     logo: null,
+    makes: ['Toyota', 'Nissan'],
     blurb:
       "Smoky Nagata's shop. Aero, exhausts and engine work, largely for Supras, GT-Rs and Z-cars. Body parts in particular are made in small batches.",
   },
@@ -111,6 +121,7 @@ export const BRANDS = [
     name: 'Nismo',
     category: 'factory',
     logo: null,
+    makes: ['Nissan'],
     blurb:
       "Nissan's factory motorsport arm. Suspension, differentials, engine parts and the Heritage line, which has put some long-discontinued Skyline parts back into production.",
   },
@@ -119,6 +130,7 @@ export const BRANDS = [
     name: 'TRD',
     category: 'factory',
     logo: null,
+    makes: ['Toyota'],
     blurb:
       "Toyota Racing Development. Suspension, brakes, limited-slip differentials and body parts, with the Japanese TRD catalogue differing substantially from the export one.",
   },
@@ -127,6 +139,7 @@ export const BRANDS = [
     name: 'Mugen',
     category: 'factory',
     logo: '/assets/brands/mugen.svg',
+    makes: ['Honda'],
     blurb:
       'Honda-adjacent, though independently owned. Wheels, aero, exhausts and engine parts. Genuine Mugen is widely counterfeited, so we photograph casting marks and part numbers.',
   },
@@ -135,6 +148,7 @@ export const BRANDS = [
     name: 'STI',
     category: 'factory',
     logo: null,
+    makes: ['Subaru'],
     blurb:
       'Subaru Tecnica International. Suspension, differentials, flexible tower bars and Group N parts. The Japanese STI parts catalogue is far broader than what reached Australia.',
   },
@@ -143,6 +157,7 @@ export const BRANDS = [
     name: 'Ralliart',
     category: 'factory',
     logo: null,
+    makes: ['Mitsubishi'],
     blurb:
       "Mitsubishi's motorsport arm. Suspension, exhausts and engine parts for the Evolution range, much of it discontinued since the division was wound back.",
   },
@@ -263,6 +278,7 @@ export const BRANDS = [
     name: 'C-West',
     category: 'body',
     logo: null,
+    makes: ['Nissan', 'Honda'],
     blurb:
       'Aero and body parts in PFRP, mostly for Nissan and Honda chassis. Panels are bulky and freight is a real part of the landed price, which we quote up front.',
   },
@@ -305,3 +321,22 @@ export const FEATURED_BRAND_SLUGS = [
   'endless',
   'tomei',
 ];
+
+/** @param {object} brand @param {string} make */
+export const brandServesMake = (brand, make) => !brand.makes || brand.makes.includes(make);
+
+/**
+ * The brands a chassis page may show, most relevant first: every brand
+ * specific to the car's make, then the featured universal brands. The one
+ * thing this exists to prevent is a marque brand on the wrong marque's
+ * page — Nismo offered for a Supra reads as not knowing the cars.
+ *
+ * @param {string} make @param {number} [limit]
+ */
+export function brandsFor(make, limit = 8) {
+  const specific = BRANDS.filter((b) => b.makes && b.makes.includes(make));
+  const universal = FEATURED_BRAND_SLUGS.map(getBrand).filter(
+    (b) => b && !b.makes,
+  );
+  return [...specific, ...universal].slice(0, limit);
+}

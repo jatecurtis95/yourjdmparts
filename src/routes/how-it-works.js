@@ -59,7 +59,7 @@ export function HowItWorksPage() {
   const stats = [
     { value: 'No stock', label: 'We find the part your car needs' },
     { value: formatNumber(BRANDS.length), label: 'Brands we source from' },
-    { value: `${TRADE.quoteDays} days`, label: 'To a landed A$ quote' },
+    { value: `${TRADE.quoteDays} days`, label: 'Typical time to a landed A$ quote' },
     { value: 'Landed A$', label: 'Duty and GST already in the price' },
   ];
 
@@ -123,7 +123,7 @@ export function HowItWorksPage() {
           ${[
             {
               title: 'Quoting is free',
-              body: `No deposit and no obligation. You get a landed A$ figure within ${TRADE.quoteDays} business days, and nothing is charged until you say yes to it.`,
+              body: `No deposit and no obligation. You get a landed A$ figure, usually within ${TRADE.quoteDays} business days, and nothing is charged until you say yes to it.`,
             },
             {
               title: 'One number, landed',

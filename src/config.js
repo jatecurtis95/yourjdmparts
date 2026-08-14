@@ -12,7 +12,12 @@ export const SITE = {
   // Contact details. The email is on the brand's own domain, which has live
   // Microsoft 365 mail routing; the address it replaced was on a domain that
   // no longer resolves, so mail sent to it bounced silently.
-  email: 'info@yourjdmparts.com',
+  //
+  // jate@ rather than info@ because jate@ is verified delivering today —
+  // it is an alias of the owner's mailbox — while info@ does not exist in
+  // the tenant yet. When the info@ shared mailbox is created and a test
+  // email to it arrives, flipping this one value moves the whole site.
+  email: 'jate@yourjdmparts.com',
   phone: '0494 070 106',
   phoneIntl: '+61494070106',
   instagram: 'yourjdmparts',

@@ -122,7 +122,7 @@ export function ContactPage() {
                   { label: 'Freight route', value: `${SITE.route.from} to ${SITE.route.to}` },
                   { label: 'We ship', value: 'Australia-wide' },
                   { label: 'Languages', value: 'English and Japanese' },
-                  { label: 'Quote turnaround', value: `${TRADE.quoteDays} business days` },
+                  { label: 'Quote turnaround', value: `Usually ${TRADE.quoteDays} business days` },
                 ],
               })}
               <hr class="rule" style="margin-block: var(--space-5)" />

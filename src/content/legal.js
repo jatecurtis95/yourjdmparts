@@ -247,7 +247,7 @@ export const PAYMENT_STAGES = [
   },
   {
     step: 'We quote',
-    detail: `Free, and no obligation. Within ${TRADE.quoteDays} business days you get one landed A$ figure with duty, GST and freight to your postcode already in it, plus the grade and an honest description of the wear.`,
+    detail: `Free, and no obligation. Usually within ${TRADE.quoteDays} business days you get one landed A$ figure with duty, GST and freight to your postcode already in it, plus the grade and an honest description of the wear.`,
   },
   {
     step: 'You accept',

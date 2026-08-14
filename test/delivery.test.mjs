@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { deliverRequest, newReference, vehicleSummary, partsSummary } from '../src/delivery.js';
 import { handleRequestSubmit } from '../src/routes/request.js';
+import { SITE } from '../src/config.js';
 import { ORIGIN } from './helpers.mjs';
 
 /**
@@ -171,9 +172,10 @@ test('when delivery fails the visitor is told, not thanked', async () => {
   const html = await submit({}).then((r) => r.text());
   assert.doesNotMatch(html, /We have your request/, 'must not claim receipt of a lost request');
   assert.match(html, /That did not reach us/);
-  // And is handed a channel that does not depend on us working.
+  // And is handed a channel that does not depend on us working. The address
+  // is whatever the site publishes, so this cannot drift from config.
   assert.match(html, /href="tel:\+61494070106"/);
-  assert.match(html, /href="mailto:info@yourjdmparts\.com"/);
+  assert.match(html, new RegExp(`href="mailto:${SITE.email.replace(/\./g, '\\.')}"`));
 });
 
 test('the honeypot still answers as though it worked, and stores nothing', async () => {

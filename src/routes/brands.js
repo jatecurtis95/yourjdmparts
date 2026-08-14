@@ -163,8 +163,8 @@ export function BrandPage({ brand }) {
           <p class="prose">
             Send us the chassis number and what you are after. We check whether the part is
             still in production in Japan, what a good used one is going for, and what the
-            freight actually costs — then come back with one landed Australian dollar figure
-            within ${TRADE.quoteDays} business days.
+            freight actually costs — then come back with one landed Australian dollar figure,
+            usually within ${TRADE.quoteDays} business days.
           </p>
           <p class="prose">
             Where a part is discontinued we will say so, and tell you what we think a fair
@@ -179,7 +179,7 @@ export function BrandPage({ brand }) {
               { label: 'Category', value: brandCategoryLabel(brand.category) },
               { label: 'Sourced', value: 'New and used, from Japan' },
               { label: 'Our relationship', value: 'Sourcing service — not a distributor or authorised reseller' },
-              { label: 'Quote turnaround', value: `${TRADE.quoteDays} business days` },
+              { label: 'Quote turnaround', value: `Usually ${TRADE.quoteDays} business days` },
               { label: 'Price basis', value: 'Landed A$, duty and GST included' },
             ],
           })}

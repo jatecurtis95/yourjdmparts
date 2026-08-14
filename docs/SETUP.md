@@ -113,28 +113,27 @@ Google Search Console.
 
 ## 3. Confirm the mailbox and the Instagram handle
 
-### Email — very likely already working
+### Email — working, tested 13 August 2026
 
-The domain's DNS shows a fully provisioned Microsoft 365 tenant:
+The domain's mail all routes into the same Microsoft 365 tenant the
+business already uses, and a live delivery test established exactly which
+addresses exist:
 
-| Record | Value | Means |
+| Address | State | Where it goes |
 |---|---|---|
-| MX | `yourjdmparts-com.mail.protection.outlook.com` | Mail is routed to Microsoft 365 |
-| TXT | `MS=ms77363601` | Domain ownership verified with Microsoft |
-| TXT | `v=spf1 include:spf.protection.outlook.com ~all` | Microsoft is authorised to send as you |
-| CNAME | `autodiscover` → `autodiscover.outlook.com` | Mail clients can configure themselves |
+| `jate@yourjdmparts.com` | **Works** | Jate's normal inbox (an alias on the account) |
+| `emi@yourjdmparts.com` | **Works** | Emi Yamauchi's inbox |
+| `info@yourjdmparts.com` | **Does not exist** | Bounces |
 
-So the domain accepts mail. What DNS cannot tell anyone is whether the
-**`info@`** mailbox specifically exists inside that tenant.
+The site therefore publishes **`jate@`** — a published address that bounces
+is the exact failure the old site had, and `info@` bounces today.
 
-**Do this:** send an email from your phone to `info@yourjdmparts.com`. If it
-arrives, the site is correct as published. If it bounces, create the mailbox
-or the alias in Microsoft 365 — or tell me a different address and it is a
-one-line change.
-
-This matters because it is the exact failure the old site had: the previous
-address was on a domain that no longer exists, so every message sent to it had
-been bouncing.
+**To move the site to `info@`:** create it first —
+[admin.microsoft.com](https://admin.microsoft.com) → **Teams & groups** →
+**Shared mailboxes** → **Add** → `info@yourjdmparts.com`, then add Jate and
+Emi as members (free, no licence). Send it a test email, and once that
+arrives change `email` in `src/config.js` — one line, everything else
+follows it, including the test suite.
 
 ### Instagram — not verifiable from here
 
